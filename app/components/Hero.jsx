@@ -1,6 +1,7 @@
 'use client';
 import React from 'react';
 import { Cursor, useTypewriter } from 'react-simple-typewriter';
+import Background from './Background';
 
 export default function Hero() {
   const [text, count] = useTypewriter({
@@ -13,7 +14,8 @@ export default function Hero() {
     delaySpeed: 2500,
   });
   return (
-    <div>
+    <div className="h-screen flex flex-col space-y-8 items-center justify-center text-center overflow-hidden">
+      <Background />
       <h1>
         <span>{text}</span>
         <Cursor cursorColor="#eee" />
