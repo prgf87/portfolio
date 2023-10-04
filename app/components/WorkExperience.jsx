@@ -11,7 +11,7 @@ export default function WorkExperience() {
       transition={{ duration: 1.5 }}
       className="h-screen flex flex-col relative overflow-hidden justify-evenly item md:flex-row px-20 mx-auto max-w-full items-center"
     >
-      <h3 className="absolute top-24 uppercase tracking-[8px] md:pl-0 text-gray-400 text-3xl">
+      <h3 className="absolute top-24 uppercase tracking-[8px] md:pl-0 text-gray-500 text-3xl">
         Experience
       </h3>
       <div className="w-full flex space-x-5 overflow-x-scroll p-10 snap-x snap-mandatory">

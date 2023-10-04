@@ -11,7 +11,7 @@ export default function About() {
       transition={{ duration: 1.5 }}
       className="flex flex-col md:flex-row relative h-screen text-center md:text-left max-w-7xl px-10 justify-evenly mx-auto items-center"
     >
-      <h3 className="absolute text-center top-24 uppercase tracking-[8px] pl-4 md:pl-0 text-gray-400 text-3xl">
+      <h3 className="absolute text-center top-24 uppercase tracking-[8px] pl-4 md:pl-0 text-gray-500 text-3xl">
         About
       </h3>
       <motion.img

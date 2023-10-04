@@ -36,7 +36,7 @@ export default function ExpCard() {
             className="h-10 w-10 rounded-full"
           />
         </div>
-        <p className="uppercase py-4 text-gray-400">Started... - Ended...</p>
+        <p className="uppercase py-4 text-gray-500">Started... - Ended...</p>
         <ul className="list-disc space-y-4 ml-5 text-lg">
           <li>Some information</li>
           <li>Some information</li>
