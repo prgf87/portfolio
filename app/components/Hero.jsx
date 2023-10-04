@@ -44,7 +44,7 @@ export default function Hero() {
             <Link href="#about" className="btn">
               About
             </Link>
-            <Link href="#experience" v className="btn">
+            <Link href="#experience" className="btn">
               Experience
             </Link>
             <Link href="#skills" className="btn">

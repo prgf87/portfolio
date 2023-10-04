@@ -15,16 +15,16 @@ export default function Background() {
       }}
       transition={{
         duration: 2.5,
-        // repeat: Infinity,
       }}
       className="relative flex justify-center items-center"
     >
-      <div className="border border-slate-500 rounded-full h-[200px] w-[200px] animate-ping mt-52" />
-      <div className="border border-slate-500 rounded-full h-[300px] w-[300px] absolute mt-52 animate-pulse duration-300" />
-      <div className="border border-slate-500 rounded-full h-[500px] w-[500px] absolute mt-52 animate-pulse duration-200" />
+      <div className="border border-slate-500 rounded-full h-[200px] w-[200px] animate-ping mt-52 duration-200" />
+      <div className="border border-slate-500 rounded-full h-[250px] w-[250px] absolute mt-52 animate-pulse duration-200" />
+      <div className="border border-slate-500 rounded-full h-[400px] w-[400px] absolute mt-52 animate-pulse duration-300" />
+      <div className="border border-slate-500 rounded-full h-[600px] w-[600px] absolute mt-52 animate-pulse duration-400" />
 
-      <div className="border border-slate-200 rounded-full opacity-20 h-[650px] w-[650px] animate-pulse duration-500 absolute mt-52" />
-      <div className="border border-slate-500 rounded-full h-[800px] w-[800px] absolute mt-52 animate-pulse duration-500" />
+      <div className="border border-slate-200 rounded-full opacity-20 h-[750px] w-[750px] animate-pulse duration-500 absolute mt-52" />
+      <div className="border border-slate-500 rounded-full h-[900px] w-[900px] absolute mt-52 animate-pulse duration-600" />
       <div />
     </motion.div>
   );

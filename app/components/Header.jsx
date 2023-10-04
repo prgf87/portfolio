@@ -30,13 +30,16 @@ export default function Header() {
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5 }}
       >
+        {/* <p className="uppercase md:hidden inline-flex text-base text-gray-400">
+          Get in Touch
+        </p> */}
         <SocialIcon
           className="cursor-pointer"
           network="email"
           fgColor="gray"
           bgColor="transparent"
         />
-        <p className="uppercase hidden md:inline-flex text-sm text-gray-400">
+        <p className="uppercase hidden md:inline-flex text-base text-gray-400">
           Get in Touch
         </p>
       </motion.section>
