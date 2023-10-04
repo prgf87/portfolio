@@ -33,7 +33,7 @@ export default function Hero() {
             height={800}
             className="rounded-full relative h-32 w-32 mx-auto border-2 border-white/20"
           />
-          <h2 className="uppercase text-slate-400 pb-2 tracking-[15px]">
+          <h2 className="uppercase text-gray-400 pb-2 tracking-[15px]">
             Software engineer
           </h2>
           <h1 className="text-3xl lg:text-4xl">

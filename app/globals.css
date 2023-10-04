@@ -6,8 +6,9 @@
   padding: 0;
   margin: 0;
   box-sizing: content-box;
+  scroll-behavior: smooth;
 }
 
 .btn {
-  @apply px-6 py-2 border border-slate-800 rounded-full uppercase text-xs tracking-widest text-slate-500 transition-all hover:border-slate-500/70 hover:text-slate-100/80;
+  @apply px-6 py-2 border border-slate-800 rounded-full uppercase text-xs tracking-widest text-gray-400 transition-all hover:border-slate-500/70 hover:text-slate-100/80;
 }

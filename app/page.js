@@ -5,7 +5,7 @@ import Hero from './components/Hero';
 
 export default function Home() {
   return (
-    <main className="h-screen bg-slate-800 text-white snap-y snap-mandatory overflow-scroll z-0">
+    <main className="h-screen bg-slate-900 text-white snap-y snap-mandatory overflow-scroll z-0">
       <Header />
 
       <section id="hero" className="snap-center">

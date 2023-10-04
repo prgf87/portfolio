@@ -15,12 +15,12 @@ export default function Header() {
       >
         <SocialIcon
           url="https://www.linkedin.com/in/prgf87/"
-          fgColor="white"
+          fgColor="gray"
           bgColor="transparent"
         />
         <SocialIcon
           url="https://github.com/prgf87"
-          fgColor="white"
+          fgColor="gray"
           bgColor="transparent"
         />
       </motion.section>
@@ -33,10 +33,10 @@ export default function Header() {
         <SocialIcon
           className="cursor-pointer"
           network="email"
-          fgColor="white"
+          fgColor="gray"
           bgColor="transparent"
         />
-        <p className="uppercase hidden md:inline-flex text-sm text-blacl">
+        <p className="uppercase hidden md:inline-flex text-sm text-gray-400">
           Get in Touch
         </p>
       </motion.section>
