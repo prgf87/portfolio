@@ -36,10 +36,10 @@ export default function Hero() {
           <h2 className="uppercase text-gray-400 pb-2 tracking-[15px]">
             Software engineer
           </h2>
-          <h1 className="text-3xl lg:text-4xl">
+          {/* <h1 className="text-3xl lg:text-4xl">
             <span>{text}</span>
             <Cursor cursorColor="#eee" />
-          </h1>
+          </h1> */}
           <div className="pt-5">
             <Link href="#about" className="btn">
               About
