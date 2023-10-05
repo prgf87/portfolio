@@ -9,14 +9,29 @@ import { useForm } from 'react-hook-form';
 
 export default function Contact() {
   const {
-    register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm();
 
   const onSubmit = (data) => {
-    window.location.href = `mailto:prgf2011@gmail.com?subject=${data.subject}&body=Hi, I am ${data.name}. ${data.message}`;
+    preventDefault();
+    fetch('/api/mail', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/josn, text/plain, */*',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name: data.name,
+        email: data.email,
+        subject: data.subject,
+        message: data.message,
+      }).then((res) => {
+        console.log('Fetch: ', res);
+        if (res.status === 200) alert('Message sent!');
+      }),
+    });
+    // window.location.href = `mailto:prgf2011@gmail.com?subject=${data.subject}&body=Hi, I am ${data.name}. ${data.message}`;
   };
   return (
     <div className="h-screen flex relative flex-col text-center md:text-left md:flex-row px-18 justify-evenly mx-auto items-center">
