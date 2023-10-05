@@ -12,3 +12,11 @@
 .btn {
   @apply px-6 py-2 border border-slate-800 rounded-full uppercase text-xs tracking-widest text-gray-500 transition-all hover:border-slate-500/70 hover:text-slate-100/80;
 }
+
+.btn2 {
+  @apply px-10 py-5 border bg-slate-400/70 border-slate-600 rounded-md uppercase tracking-widest text-gray-300 transition-all hover:border-slate-300/70 hover:text-slate-400/80 text-lg font-bold;
+}
+
+.contact-input {
+  @apply outline-none bg-slate-100/30 rounded-sm border-b px-6 py-4 border-gray-800 transition-all placeholder:text-gray-400 focus:border-gray-300/60;
+}

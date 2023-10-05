@@ -6,8 +6,17 @@ import {
   PhoneIcon,
   UserCircleIcon,
 } from '@heroicons/react/24/outline';
+import { useForm } from 'react-hook-form';
 
 export default function Contact() {
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = (data) => console.log(data);
   return (
     <div className="h-screen flex relative flex-col text-center md:text-left md:flex-row px-18 justify-evenly mx-auto items-center">
       <h3 className="absolute text-center top-24 uppercase tracking-[8px] pl-4 md:pl-0 text-gray-500 text-3xl">
@@ -35,6 +44,18 @@ export default function Contact() {
             <p className="text-2xl">Kent - UK</p>
           </div>
         </div>
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="flex flex-col space-y-2 w-fit mx-auto"
+        >
+          <div className="flex space-x-2">
+            <input placeholder="Name" className="contact-input" type="text" />
+            <input placeholder="Email" className="contact-input" type="email" />
+          </div>
+          <input placeholder="Subject" className="contact-input" type="text" />
+          <textarea placeholder="Message" className="contact-input" />
+          <button className="btn2">Submit</button>
+        </form>
       </div>
     </div>
   );
