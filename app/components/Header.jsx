@@ -4,6 +4,7 @@ import React from 'react';
 import { SocialIcon } from 'react-social-icons';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import { EnvelopeIcon } from '@heroicons/react/24/outline';
 
 export default function Header() {
   return (
@@ -35,13 +36,11 @@ export default function Header() {
           {/* <p className="uppercase md:hidden inline-flex text-base text-gray-500">
           Get in Touch
         </p> */}
-          <SocialIcon
-            className="cursor-pointer"
+          <EnvelopeIcon
+            className="cursor-pointer h-6 w-6 text-gray-500 mr-2"
             network="email"
-            fgColor="gray"
-            bgColor="transparent"
           />
-          <p className="uppercase hidden md:inline-flex text-base text-gray-500">
+          <p className="uppercase hidden md:inline-flex text-sm text-gray-500">
             Get in Touch
           </p>
         </motion.section>

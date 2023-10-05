@@ -10,10 +10,10 @@ export default function Projects() {
       <h3 className="absolute text-center top-24 uppercase tracking-[8px] md:pl-0 text-gray-500 text-3xl">
         Projects
       </h3>
-      <div className="relative w-full flex overflow-x-scroll snap-x snap-mandatory z-20">
+      <div className="absolute w-full flex overflow-x-scroll snap-x snap-mandatory z-20 items-center">
         {projects.map((p, i) => {
           return (
-            <article
+            <div
               className="w-screen flex-shrink-0 snap-center flex flex-col space-y-10 items-center justify-center px-10 md:p-44 h-screen"
               key={p}
             >
@@ -41,7 +41,7 @@ export default function Projects() {
                   the outcome was{' '}
                 </p>
               </div>
-            </article>
+            </div>
           );
         })}
       </div>

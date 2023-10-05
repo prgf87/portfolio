@@ -4,7 +4,6 @@ import {
   EnvelopeIcon,
   MapPinIcon,
   PhoneIcon,
-  UserCircleIcon,
 } from '@heroicons/react/24/outline';
 import { useForm } from 'react-hook-form';
 
@@ -22,7 +21,7 @@ export default function Contact() {
   return (
     <div className="h-screen flex relative flex-col text-center md:text-left md:flex-row px-18 justify-evenly mx-auto items-center">
       <h3 className="absolute text-center top-24 uppercase tracking-[8px] pl-4 md:pl-0 text-gray-500 text-3xl">
-        About
+        Contact me
       </h3>
       <div className="space-y-10 flex flex-col">
         <h4 className="text-3xl font-semibold text-center">
