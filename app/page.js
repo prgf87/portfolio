@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import About from './components/About';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
@@ -9,7 +10,7 @@ import WorkExperience from './components/WorkExperience';
 
 export default function Home() {
   return (
-    <main className="h-screen bg-slate-900 text-white snap-y snap-mandatory overflow-scroll z-0">
+    <main className="h-screen bg-slate-900 text-white snap-y snap-mandatory overflow-scroll z-0 overflow-y-scroll overflow-x-hidden scrollbar scrollbar-track-gray-400/20 scrollbar-thumb-slate-100">
       <Header />
 
       <section id="hero" className="snap-center">
@@ -30,8 +31,10 @@ export default function Home() {
       <section id="contact" className="snap-start">
         <Contact />
       </section>
-      <section id="footer" className="snap-center">
-        <Footer />
+      <section id="footer" className="sticky bottom-5">
+        <Link href="#hero">
+          <Footer />
+        </Link>
       </section>
     </main>
   );

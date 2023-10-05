@@ -21,11 +21,11 @@ export default function Hero() {
       <Background />
       <motion.div
         initial={{ opacity: 0 }}
-        animate={{ opacity: [0, 0, 0, 0.8, 1] }}
-        transition={{ duration: 5 }}
+        animate={{ opacity: [0, 0, 0.8, 1] }}
+        transition={{ duration: 1.5, delay: 2 }}
         className="z-[2]"
       >
-        <div className="relative bottom-52">
+        <div className="relative bottom-44">
           <Image
             src={'/profile-pic.jpg'}
             alt="/"
