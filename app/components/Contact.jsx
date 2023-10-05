@@ -38,7 +38,7 @@ export default function Contact() {
           </div>
           <div className="flex items-center space-x-5 justify-center">
             <EnvelopeIcon className="h-8 w-8" />
-            <p className="text-2xl">prgf2011[at]gmail.com</p>
+            <p className="text-2xl">prgf2011 [at] gmail.com</p>
           </div>
           <div className="flex items-center space-x-5 justify-center">
             <MapPinIcon className="h-8 w-8" />

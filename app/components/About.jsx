@@ -23,7 +23,7 @@ export default function About() {
         alt="A photograph of Pedro Ferreira wearing sunglasses and smiling, set against a backdrop of Porto, in Portugal"
         className="-mb-20 md:mb-0 flex-shrink-0 w-56 h-56 rounded-full object-cover md:rounded-lg md:w-64 md:h-96 xl:w-[400px] xl:h-[500px] mt-14 md:mt-0 "
       />
-      <div className="space-y-4 px-2 md:pl-10 md:pr-40 text-lg">
+      <div className="space-y-4 px-2 md:pl-10 xl:pr-40 text-lg">
         <h4 className="text-4xl">Stay a while, and listen...</h4>
         <p>
           From a young age, I&apos;ve always had an interest in computer
