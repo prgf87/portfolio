@@ -2,7 +2,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import ExpCard from './ExpCard';
-export default function WorkExperience() {
+export default function WorkExperience({ experiences }) {
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -15,9 +15,12 @@ export default function WorkExperience() {
         Experience
       </h3>
       <div className="w-full flex space-x-5 overflow-x-scroll p-10 snap-x snap-mandatory scrollbar scrollbar-track-gray-400/20 scrollbar-thumb-slate-100">
+        {experiences.map((exp) => {
+          return <ExpCard key={exp._id} exp={exp} />;
+        })}
+        {/* <ExpCard />
         <ExpCard />
-        <ExpCard />
-        <ExpCard />
+        <ExpCard /> */}
       </div>
     </motion.div>
   );

@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { EnvelopeIcon } from '@heroicons/react/24/outline';
 
-export default function Header() {
+export default function Header({ socials }) {
   return (
     <header className="sticky top-0 p-5 flex items-start justify-between max-w-7xl mx-auto z-20 xl:items-center ">
       <motion.section
@@ -15,16 +15,16 @@ export default function Header() {
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5 }}
       >
-        <SocialIcon
-          url="https://www.linkedin.com/in/prgf87/"
-          fgColor="gray"
-          bgColor="transparent"
-        />
-        <SocialIcon
-          url="https://github.com/prgf87"
-          fgColor="gray"
-          bgColor="transparent"
-        />
+        {socials.map((social) => {
+          return (
+            <SocialIcon
+              key={social._id}
+              url={social.url}
+              fgColor="gray"
+              bgColor="transparent"
+            />
+          );
+        })}
       </motion.section>
       <Link href="#contact">
         <motion.section

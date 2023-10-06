@@ -10,33 +10,42 @@ import WorkExperience from './components/WorkExperience';
 import { client } from '@/sanity/lib/client';
 
 export default async function Home() {
-  const pageInfo = await client.fetch(`*[_type == "pageInfo"]`);
-  console.log(pageInfo);
+  const pageInfo = await client.fetch(`*[_type == "pageInfo"][0]`);
+  const skills = await client.fetch(`*[_type == "skill"]`);
+  const socials = await client.fetch(`*[_type == "social"]`);
+  const experiences = await client.fetch(`*[_type == "experience"] {
+    ...,
+    technologies[]->
+  }`);
+  const projects = await client.fetch(`*[_type == "projects"] {
+    ...,
+    technologies[]->
+  }`);
   return (
     <main className="h-screen bg-slate-900 text-white snap-y snap-mandatory overflow-y-scroll z-0 overflow-x-hidden scrollbar scrollbar-track-gray-400/20 scrollbar-thumb-slate-100">
-      <Header />
+      <Header socials={socials} />
 
       <section id="hero" className="snap-center">
-        <Hero />
+        <Hero pageInfo={pageInfo} />
       </section>
       <section id="about" className="snap-center">
-        <About />
+        <About pageInfo={pageInfo} />
       </section>
       <section id="experience" className="snap-center">
-        <WorkExperience />
+        <WorkExperience experiences={experiences} />
       </section>
       <section id="skills" className="snap-start">
-        <Skills />
+        <Skills skills={skills} />
       </section>
       <section id="projects" className="snap-start">
-        <Projects />
+        <Projects projects={projects} />
       </section>
       <section id="contact" className="snap-start">
         <Contact />
       </section>
       <section id="footer" className="sticky bottom-5">
         <Link href="#hero">
-          <Footer />
+          <Footer pageInfo={pageInfo} />
         </Link>
       </section>
     </main>

@@ -3,7 +3,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Skill from './Skill';
 
-export default function Skills() {
+export default function Skills({ skills }) {
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -19,6 +19,10 @@ export default function Skills() {
         Hover over a skill
       </h4>
       <div className="grid grid-cols-4 gap-5">
+        {skills.slice(0, 16).map((skill) => {
+          return <Skill key={skill._id} skill={skill} />;
+        })}
+        {/* <Skill />
         <Skill />
         <Skill />
         <Skill />
@@ -33,8 +37,7 @@ export default function Skills() {
         <Skill />
         <Skill />
         <Skill />
-        <Skill />
-        <Skill />
+        <Skill /> */}
       </div>
     </motion.div>
   );
