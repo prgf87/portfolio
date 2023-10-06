@@ -24,6 +24,7 @@ export default function Contact() {
     // Server function to verify captcha
     await verifyCaptcha(token)
       .then(() => {
+        console.log('here!!');
         setIsverified(true);
         if (isVerified === true) {
         }
@@ -104,7 +105,10 @@ export default function Contact() {
           />
           <textarea placeholder="Message" className="contact-input" required />
 
-          <button className="btn2" disabled={!isVerified}>
+          <button
+            className={isVerified ? `btn2` : `btn2-dis`}
+            disabled={!isVerified}
+          >
             Submit
           </button>
           <ReCAPTCHA

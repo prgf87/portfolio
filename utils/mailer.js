@@ -10,8 +10,8 @@ export async function sendMail(name, subject, email, message) {
   });
 
   const mailOptions = {
-    from: process.env.NODEMAILER_EMAIL,
-    to: email,
+    from: email,
+    to: NEXT_PUBLIC_NODEMAILER_EMAIL,
     name: name,
     subject: subject,
     text: message,
