@@ -6,12 +6,30 @@ import {
   PhoneIcon,
 } from '@heroicons/react/24/outline';
 import { useForm } from 'react-hook-form';
+import { useRef, useState } from 'react';
+import ReCAPTCHA from 'react-google-recaptcha';
+import { verifyCaptcha } from '@/utils/ServerActions';
+
+const reCaptchaKey = process.env.NEXT_PUBLIC_GOOGLE_RECAPTCHA_KEY;
 
 export default function Contact() {
+  const recaptchaRef = useRef(null);
+  const [isVerified, setIsverified] = useState(false);
   const {
     handleSubmit,
     formState: { errors },
   } = useForm();
+
+  async function handleCaptchaSubmission(token) {
+    // Server function to verify captcha
+    await verifyCaptcha(token)
+      .then(() => {
+        setIsverified(true);
+        if (isVerified === true) {
+        }
+      })
+      .catch(() => setIsverified(false));
+  }
 
   const onSubmit = (data) => {
     fetch('/api/mail', {
@@ -32,6 +50,7 @@ export default function Contact() {
     });
     // window.location.href = `mailto:prgf2011@gmail.com?subject=${data.subject}&body=Hi, I am ${data.name}. ${data.message}`;
   };
+
   return (
     <div className="h-screen w-screen flex relative flex-col text-center md:text-left md:flex-row px-18 justify-evenly mx-auto items-center">
       <h3 className="absolute text-center top-24 uppercase tracking-[8px] pl-4 md:pl-0 text-gray-500 text-3xl">
@@ -84,7 +103,16 @@ export default function Contact() {
             required
           />
           <textarea placeholder="Message" className="contact-input" required />
-          <button className="btn2">Submit</button>
+
+          <button className="btn2" disabled={!isVerified}>
+            Submit
+          </button>
+          <ReCAPTCHA
+            sitekey={reCaptchaKey}
+            ref={recaptchaRef}
+            onChange={handleCaptchaSubmission}
+            className="flex justify-center items-center"
+          />
         </form>
       </div>
     </div>
