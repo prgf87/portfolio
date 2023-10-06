@@ -14,7 +14,7 @@ export default function Skill({ directionLeft, skill }) {
         viewport={{ once: true }}
         src={urlFor(image).url()}
         alt={`${title} company logo`}
-        className="w-24 h-24 md:w-32 md:h-32 rounded-full object-cover object-center filter group-hover:grayscale transition duration-300 ease-in-out"
+        className="w-24 h-24 md:w-32 md:h-32 rounded-full object-center filter group-hover:grayscale transition duration-300 ease-in-out bg-slate-800"
       />
       <div className="absolute opacity-0 group-hover:opacity-100 transition duration-300 ease-in-out group-hover:bg-white h-24 w-24 md:w-32 md:h-32 rounded-full z-0">
         <div className="flex items-center justify-center h-full">

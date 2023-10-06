@@ -14,7 +14,6 @@ export default function Contact() {
   } = useForm();
 
   const onSubmit = (data) => {
-    preventDefault();
     fetch('/api/mail', {
       method: 'POST',
       headers: {
@@ -26,15 +25,15 @@ export default function Contact() {
         email: data.email,
         subject: data.subject,
         message: data.message,
-      }).then((res) => {
-        console.log('Fetch: ', res);
-        if (res.status === 200) alert('Message sent!');
       }),
+    }).then((res) => {
+      console.log('Fetch: ', res);
+      if (res.status === 200) alert('Message sent!');
     });
     // window.location.href = `mailto:prgf2011@gmail.com?subject=${data.subject}&body=Hi, I am ${data.name}. ${data.message}`;
   };
   return (
-    <div className="h-screen flex relative flex-col text-center md:text-left md:flex-row px-18 justify-evenly mx-auto items-center">
+    <div className="h-screen w-screen flex relative flex-col text-center md:text-left md:flex-row px-18 justify-evenly mx-auto items-center">
       <h3 className="absolute text-center top-24 uppercase tracking-[8px] pl-4 md:pl-0 text-gray-500 text-3xl">
         Contact me
       </h3>
@@ -65,11 +64,26 @@ export default function Contact() {
           className="flex flex-col space-y-2 w-fit mx-auto"
         >
           <div className="flex space-x-2">
-            <input placeholder="Name" className="contact-input" type="text" />
-            <input placeholder="Email" className="contact-input" type="email" />
+            <input
+              placeholder="Name"
+              className="contact-input"
+              type="text"
+              required
+            />
+            <input
+              placeholder="Email"
+              className="contact-input"
+              type="email"
+              required
+            />
           </div>
-          <input placeholder="Subject" className="contact-input" type="text" />
-          <textarea placeholder="Message" className="contact-input" />
+          <input
+            placeholder="Subject"
+            className="contact-input"
+            type="text"
+            required
+          />
+          <textarea placeholder="Message" className="contact-input" required />
           <button className="btn2">Submit</button>
         </form>
       </div>

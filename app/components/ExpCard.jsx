@@ -15,7 +15,7 @@ export default function ExpCard({ exp }) {
     technologies,
   } = exp;
   return (
-    <article className="flex flex-col rounded-lg items-center space-y-4 flex-shrink-0 w-[500px] md:w-[600px] xl:w-[900px] snap-center bg-slate-800 p-10 opacity-60 hover:opacity-100 cursor-pointer transition-opacity duration-200 overflow-hidden max-h-[550px]">
+    <article className="flex flex-col rounded-lg items-center space-y-4 flex-shrink-0 w-[350px] md:w-[600px] xl:w-[900px] snap-center bg-slate-800 p-10 opacity-60 hover:opacity-100 cursor-pointer transition-opacity duration-200 max-h-[550px]">
       <motion.img
         initial={{ y: -100, opacity: 0 }}
         animate={{ opacity: 1, y: 0 }}
@@ -23,12 +23,12 @@ export default function ExpCard({ exp }) {
         viewport={{ once: true }}
         src={urlFor(companyImage).url()}
         alt={`The ${company} company logo`}
-        className="w-32 h-32 rounded-full md:w-[100px] md:h-[100px] object-cover object-center"
+        className="w-20 h-20 rounded-full md:w-[100px] md:h-[100px] object-cover object-center"
       />
       <div className="px-0 md:px-20">
-        <h4 className="text-3xl font-extralight">{jobTitle}</h4>
+        <h4 className="text-2xl font-extralight">{jobTitle}</h4>
         <p className="font-semibold text-2xl mt-1">{company}</p>
-        <div className="flex space-x-2 my-2">
+        <div className="flex space-x-2 my-2 ">
           {technologies.map((tech) => {
             return (
               <img
@@ -63,7 +63,7 @@ export default function ExpCard({ exp }) {
         </p>
         <ul className="list-disc space-y-4 ml-5 text-xs">
           {points.map((point) => {
-            return <li key={point._id}>{point}</li>;
+            return <li key={point}>{point}</li>;
           })}
           {/* <li>Some information</li>
           <li>Some information</li>
