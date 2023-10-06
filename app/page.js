@@ -7,8 +7,11 @@ import Hero from './components/Hero';
 import Projects from './components/Projects';
 import Skills from './components/Skills';
 import WorkExperience from './components/WorkExperience';
+import { client } from '@/sanity/lib/client';
 
-export default function Home() {
+export default async function Home() {
+  const pageInfo = await client.fetch(`*[_type == "pageInfo"]`);
+  console.log(pageInfo);
   return (
     <main className="h-screen bg-slate-900 text-white snap-y snap-mandatory overflow-y-scroll z-0 overflow-x-hidden scrollbar scrollbar-track-gray-400/20 scrollbar-thumb-slate-100">
       <Header />

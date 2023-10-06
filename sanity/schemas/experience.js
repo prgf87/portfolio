@@ -19,7 +19,7 @@ export const experience = {
     {
       name: 'company',
       title: 'Company',
-      type: 'text',
+      type: 'string',
     },
     {
       name: 'dateStarted',

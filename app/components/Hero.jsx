@@ -40,7 +40,7 @@ export default function Hero() {
             <span>{text}</span>
             <Cursor cursorColor="#eee" />
           </h1> */}
-          <div className="pt-5">
+          <div className="pt-5 space-x-2">
             <Link href="#about" className="btn">
               About
             </Link>
