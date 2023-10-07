@@ -1,11 +1,9 @@
 'use client';
 import React from 'react';
-import { Cursor, useTypewriter } from 'react-simple-typewriter';
 import Background from './Background';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import urlBuilder from '@sanity/image-url';
 import { urlFor } from '@/sanity/lib/client';
 
 export default function Hero({ pageInfo }) {
@@ -19,13 +17,13 @@ export default function Hero({ pageInfo }) {
         transition={{ duration: 1.5, delay: 2 }}
         className="z-[2]"
       >
-        <div className="relative bottom-44">
+        <div className="relative bottom-[215px]">
           <Image
             src={urlFor(heroImage).url()}
             alt="/"
             width={800}
             height={800}
-            className="rounded-full relative h-32 w-32 mx-auto border-2 border-white/20"
+            className="rounded-full relative h-52 w-52 mx-auto border-2 border-white/20"
           />
           <h2 className="uppercase text-gray-400 pb-2 tracking-[15px]">
             {role}

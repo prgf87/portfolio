@@ -5,21 +5,32 @@ import {
   MapPinIcon,
   PhoneIcon,
 } from '@heroicons/react/24/outline';
-import { useForm } from 'react-hook-form';
-import { useRef, useState } from 'react';
+// import { useForm } from 'react-hook-form';
+import { useState } from 'react';
 import ReCAPTCHA from 'react-google-recaptcha';
-import { verifyCaptcha } from '@/utils/ServerActions';
 
 const reCaptchaKey = process.env.NEXT_PUBLIC_GOOGLE_RECAPTCHA_SITE_KEY;
 
 export default function Contact() {
   const [captcha, setCaptcha] = useState(null);
-  const {
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [subject, setSubject] = useState('');
+  const [message, setMessage] = useState('');
+  const [validForm, setValidForm] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  const onSubmit = (data) => {
+  const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
+  const nameRegex = /\b([A-ZÀ-ÿ][-,a-z. ']+[ ]*)+/gm;
+
+  const submitHandler = async (e) => {
+    e.preventDefault();
+    console.log(e, 'EVENT########');
+    setLoading(true);
+    setValidForm(emailRegex.test(email));
+
+    if (!validForm) return;
+
     fetch('/api/mail', {
       method: 'POST',
       headers: {
@@ -27,14 +38,17 @@ export default function Contact() {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        name: data.name,
-        email: data.email,
-        subject: data.subject,
-        message: data.message,
+        name: name,
+        email: email,
+        subject: subject,
+        message: message,
+        validation: validForm,
       }),
     }).then((res) => {
       console.log('Fetch: ', res);
-      if (res.status === 200) alert('Message sent!');
+      if (res.status === 200)
+        alert('Message sent, thanks for getting in touch.');
+      else alert('Something went wrong, please try again.');
     });
   };
 
@@ -45,13 +59,10 @@ export default function Contact() {
       </h3>
       <div className="space-y-10 flex flex-col mt-10">
         <h4 className="text-3xl font-semibold text-center">
-          I am open to new opportunities.
+          Lend me your ear..
           <br />
-          <span className="underline decoration-green-500/50">
-            Get in touch
-          </span>
         </h4>
-        <div className="space-y-10">
+        <div className="space-y-4">
           <div className="flex items-center space-x-5 justify-center">
             <PhoneIcon className="h-8 w-8" />
             <p className="text-2xl">+44 7472 097 891</p>
@@ -66,33 +77,54 @@ export default function Contact() {
           </div>
         </div>
         <form
-          onSubmit={handleSubmit(onSubmit)}
+          onSubmit={submitHandler}
           className="flex flex-col space-y-2 w-fit mx-auto"
         >
+          {/* <p className="text-center text-xl">Use the form to get in touch </p> */}
           <div className="flex space-x-2">
             <input
               placeholder="Name"
+              value={name}
               className="contact-input"
               type="text"
               required
+              onChange={(e) => setName(e.target.value)}
             />
+
             <input
               placeholder="Email"
+              value={email}
               className="contact-input"
               type="email"
               required
+              autoCapitalize="off"
+              autoCorrect="off"
+              autoComplete="off"
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <input
             placeholder="Subject"
+            value={subject}
             className="contact-input"
             type="text"
             required
+            onChange={(e) => setSubject(e.target.value)}
           />
-          <textarea placeholder="Message" className="contact-input" required />
+          <textarea
+            placeholder="Message"
+            value={message}
+            className="contact-input"
+            required
+            onChange={(e) => setMessage(e.target.value)}
+          />
 
-          <button className={captcha ? `btn2` : `btn2-dis`} disabled={!captcha}>
-            Submit
+          <button
+            className={captcha || validForm ? `btn2` : `btn2-dis`}
+            // disabled={!captcha || !validForm || loading}
+          >
+            {loading ? 'Loading...' : 'Submit'}
+            {/* Submit */}
           </button>
           <ReCAPTCHA
             sitekey={reCaptchaKey}
