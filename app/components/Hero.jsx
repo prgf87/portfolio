@@ -23,7 +23,7 @@ export default function Hero({ pageInfo }) {
             alt="/"
             width={800}
             height={800}
-            className="rounded-full relative h-32 w-32 mx-auto border-2 border-white/20"
+            className="rounded-full relative h-52 w-52 mx-auto border-2 border-white/20"
           />
           <h2 className="uppercase text-gray-400 pb-2 tracking-[15px]">
             {role}

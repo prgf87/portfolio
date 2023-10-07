@@ -18,11 +18,11 @@ export default async function Home() {
   const experiences = await client.fetch(`*[_type == "experience"] {
     ...,
     technologies[]->
-  }`);
+  } | order(_createdAt asc)`);
   const projects = await client.fetch(`*[_type == "projects"] {
     ...,
     technologies[]->
-  }`);
+  } | order(_createdAt asc)`);
 
   return (
     <main className="h-screen bg-slate-900 text-white snap-y snap-mandatory overflow-y-scroll z-0 overflow-x-hidden scrollbar scrollbar-track-gray-400/20 scrollbar-thumb-slate-100">

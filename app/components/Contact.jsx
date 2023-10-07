@@ -10,7 +10,6 @@ import { useState } from 'react';
 import ReCAPTCHA from 'react-google-recaptcha';
 
 const reCaptchaKey = process.env.NEXT_PUBLIC_GOOGLE_RECAPTCHA_SITE_KEY;
-const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
 
 export default function Contact() {
   const [captcha, setCaptcha] = useState(null);
@@ -19,22 +18,37 @@ export default function Contact() {
   const [subject, setSubject] = useState('');
   const [message, setMessage] = useState('');
   const [validForm, setValidForm] = useState(false);
-  console.log(name, email, subject, message);
-  const data = { name, email, subject, message };
+  const [loading, setLoading] = useState(false);
 
-  const submitHandler = async () => {
+  const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
+  const nameRegex = /\b([A-ZÀ-ÿ][-,a-z. ']+[ ]*)+/gm;
+
+  const submitHandler = async (e) => {
+    e.preventDefault();
+    console.log(e, 'EVENT########');
+    setLoading(true);
+    setValidForm(emailRegex.test(email));
+
+    if (!validForm) return;
+
     fetch('/api/mail', {
       method: 'POST',
       headers: {
         Accept: 'application/josn, text/plain, */*',
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify({
+        name: name,
+        email: email,
+        subject: subject,
+        message: message,
+        validation: validForm,
+      }),
     }).then((res) => {
       console.log('Fetch: ', res);
       if (res.status === 200)
         alert('Message sent, thanks for getting in touch.');
-      // else alert('Something went wrong, please try again.');
+      else alert('Something went wrong, please try again.');
     });
   };
 
@@ -45,11 +59,8 @@ export default function Contact() {
       </h3>
       <div className="space-y-10 flex flex-col mt-10">
         <h4 className="text-3xl font-semibold text-center">
-          I am open to new opportunities.
+          Lend me your ear..
           <br />
-          <span className="underline decoration-green-500/50">
-            Get in touch
-          </span>
         </h4>
         <div className="space-y-4">
           <div className="flex items-center space-x-5 justify-center">
@@ -69,6 +80,7 @@ export default function Contact() {
           onSubmit={submitHandler}
           className="flex flex-col space-y-2 w-fit mx-auto"
         >
+          {/* <p className="text-center text-xl">Use the form to get in touch </p> */}
           <div className="flex space-x-2">
             <input
               placeholder="Name"
@@ -76,15 +88,18 @@ export default function Contact() {
               className="contact-input"
               type="text"
               required
-              min={10}
               onChange={(e) => setName(e.target.value)}
             />
+
             <input
               placeholder="Email"
               value={email}
               className="contact-input"
               type="email"
               required
+              autoCapitalize="off"
+              autoCorrect="off"
+              autoComplete="off"
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
@@ -106,9 +121,10 @@ export default function Contact() {
 
           <button
             className={captcha || validForm ? `btn2` : `btn2-dis`}
-            // disabled={!captcha}
+            // disabled={!captcha || !validForm || loading}
           >
-            Submit
+            {loading ? 'Loading...' : 'Submit'}
+            {/* Submit */}
           </button>
           <ReCAPTCHA
             sitekey={reCaptchaKey}
