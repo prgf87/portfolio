@@ -15,6 +15,7 @@ export default function Contact() {
   const [captcha, setCaptcha] = useState(null);
   const {
     handleSubmit,
+
     formState: { errors },
   } = useForm();
 
@@ -48,7 +49,7 @@ export default function Contact() {
             Get in touch
           </span>
         </h4>
-        <div className="space-y-10">
+        <div className="space-y-4">
           <div className="flex items-center space-x-5 justify-center">
             <PhoneIcon className="h-8 w-8" />
             <p className="text-2xl">+44 7472 097 891</p>
