@@ -1,11 +1,9 @@
 'use client';
 import React from 'react';
-import { Cursor, useTypewriter } from 'react-simple-typewriter';
 import Background from './Background';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import urlBuilder from '@sanity/image-url';
 import { urlFor } from '@/sanity/lib/client';
 
 export default function Hero({ pageInfo }) {

@@ -11,7 +11,7 @@ export async function sendMail(name, subject, email, message) {
 
   const mailOptions = {
     from: email,
-    to: NODEMAILER_EMAIL,
+    to: process.env.NODEMAILER_EMAIL,
     name: name,
     subject: subject,
     text: message,

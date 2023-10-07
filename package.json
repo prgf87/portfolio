@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "sanity": "sanity dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -21,7 +22,6 @@
     "react": "latest",
     "react-dom": "latest",
     "react-google-recaptcha": "^3.1.0",
-    "react-hook-form": "^7.47.0",
     "react-social-icons": "^6.4.0",
     "sanity": "^3.17.0",
     "sharp": "^0.32.6",

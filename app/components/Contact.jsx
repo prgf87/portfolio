@@ -5,22 +5,24 @@ import {
   MapPinIcon,
   PhoneIcon,
 } from '@heroicons/react/24/outline';
-import { useForm } from 'react-hook-form';
+// import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import ReCAPTCHA from 'react-google-recaptcha';
 
 const reCaptchaKey = process.env.NEXT_PUBLIC_GOOGLE_RECAPTCHA_SITE_KEY;
+const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
 
 export default function Contact() {
   const [captcha, setCaptcha] = useState(null);
-  const {
-    handleSubmit,
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [subject, setSubject] = useState('');
+  const [message, setMessage] = useState('');
+  const [validForm, setValidForm] = useState(false);
+  console.log(name, email, subject, message);
+  const data = { name, email, subject, message };
 
-    formState: { errors },
-  } = useForm();
-
-  const onSubmit = async (data) => {
-    console.log(data);
+  const submitHandler = async () => {
     fetch('/api/mail', {
       method: 'POST',
       headers: {
@@ -64,32 +66,48 @@ export default function Contact() {
           </div>
         </div>
         <form
-          onSubmit={handleSubmit(onSubmit)}
+          onSubmit={submitHandler}
           className="flex flex-col space-y-2 w-fit mx-auto"
         >
           <div className="flex space-x-2">
             <input
               placeholder="Name"
+              value={name}
               className="contact-input"
               type="text"
               required
+              min={10}
+              onChange={(e) => setName(e.target.value)}
             />
             <input
               placeholder="Email"
+              value={email}
               className="contact-input"
               type="email"
               required
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <input
             placeholder="Subject"
+            value={subject}
             className="contact-input"
             type="text"
             required
+            onChange={(e) => setSubject(e.target.value)}
           />
-          <textarea placeholder="Message" className="contact-input" required />
+          <textarea
+            placeholder="Message"
+            value={message}
+            className="contact-input"
+            required
+            onChange={(e) => setMessage(e.target.value)}
+          />
 
-          <button className={captcha ? `btn2` : `btn2-dis`} disabled={!captcha}>
+          <button
+            className={captcha || validForm ? `btn2` : `btn2-dis`}
+            // disabled={!captcha}
+          >
             Submit
           </button>
           <ReCAPTCHA
