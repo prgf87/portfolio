@@ -17,7 +17,7 @@ export default function Hero({ pageInfo }) {
         transition={{ duration: 1.5, delay: 2 }}
         className="z-[2]"
       >
-        <div className="relative bottom-44">
+        <div className="relative bottom-[215px]">
           <Image
             src={urlFor(heroImage).url()}
             alt="/"

@@ -11,11 +11,11 @@ export default function Projects({ projects }) {
       <h3 className="absolute text-center top-24 uppercase tracking-[8px] md:pl-0 text-gray-500 text-3xl">
         Projects
       </h3>
-      <div className="absolute w-full flex overflow-x-scroll snap-x snap-mandatory z-20 items-center">
+      <div className="w-3/4 flex space-x-5 overflow-x-scroll p-10 snap-x snap-mandatory scrollbar scrollbar-track-gray-400/20 scrollbar-thumb-slate-100 z-20">
         {projects.map((p, i) => {
           return (
             <div
-              className="w-screen flex-shrink-0 snap-center flex flex-col space-y-4 items-center justify-center px-10 md:p-20 h-screen mt-10"
+              className="flex flex-col rounded-lg items-center space-y-4 flex-shrink-0 w-screen snap-center bg-slate-800 p-10 cursor-pointer transition-opacity duration-200 max-h-[550px] z-20"
               key={p._id}
             >
               <Link href={p.linkToBuild} className="m-0">
