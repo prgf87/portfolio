@@ -10,27 +10,14 @@ import { useRef, useState } from 'react';
 import ReCAPTCHA from 'react-google-recaptcha';
 import { verifyCaptcha } from '@/utils/ServerActions';
 
-const reCaptchaKey = process.env.NEXT_PUBLIC_GOOGLE_RECAPTCHA_KEY;
+const reCaptchaKey = process.env.NEXT_PUBLIC_GOOGLE_RECAPTCHA_SITE_KEY;
 
 export default function Contact() {
-  const recaptchaRef = useRef(null);
-  const [isVerified, setIsverified] = useState(false);
+  const [captcha, setCaptcha] = useState(null);
   const {
     handleSubmit,
     formState: { errors },
   } = useForm();
-
-  async function handleCaptchaSubmission(token) {
-    // Server function to verify captcha
-    await verifyCaptcha(token)
-      .then(() => {
-        console.log('here!!');
-        setIsverified(true);
-        if (isVerified === true) {
-        }
-      })
-      .catch(() => setIsverified(false));
-  }
 
   const onSubmit = (data) => {
     fetch('/api/mail', {
@@ -49,7 +36,6 @@ export default function Contact() {
       console.log('Fetch: ', res);
       if (res.status === 200) alert('Message sent!');
     });
-    // window.location.href = `mailto:prgf2011@gmail.com?subject=${data.subject}&body=Hi, I am ${data.name}. ${data.message}`;
   };
 
   return (
@@ -57,7 +43,7 @@ export default function Contact() {
       <h3 className="absolute text-center top-24 uppercase tracking-[8px] pl-4 md:pl-0 text-gray-500 text-3xl">
         Contact me
       </h3>
-      <div className="space-y-10 flex flex-col">
+      <div className="space-y-10 flex flex-col mt-10">
         <h4 className="text-3xl font-semibold text-center">
           I am open to new opportunities.
           <br />
@@ -105,16 +91,12 @@ export default function Contact() {
           />
           <textarea placeholder="Message" className="contact-input" required />
 
-          <button
-            className={isVerified ? `btn2` : `btn2-dis`}
-            disabled={!isVerified}
-          >
+          <button className={captcha ? `btn2` : `btn2-dis`} disabled={!captcha}>
             Submit
           </button>
           <ReCAPTCHA
             sitekey={reCaptchaKey}
-            ref={recaptchaRef}
-            onChange={handleCaptchaSubmission}
+            onChange={setCaptcha}
             className="flex justify-center items-center"
           />
         </form>
