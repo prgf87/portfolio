@@ -6,9 +6,8 @@ import {
   PhoneIcon,
 } from '@heroicons/react/24/outline';
 import { useForm } from 'react-hook-form';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import ReCAPTCHA from 'react-google-recaptcha';
-import { verifyCaptcha } from '@/utils/ServerActions';
 
 const reCaptchaKey = process.env.NEXT_PUBLIC_GOOGLE_RECAPTCHA_SITE_KEY;
 
@@ -19,22 +18,20 @@ export default function Contact() {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
+    console.log(data);
     fetch('/api/mail', {
       method: 'POST',
       headers: {
         Accept: 'application/josn, text/plain, */*',
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({
-        name: data.name,
-        email: data.email,
-        subject: data.subject,
-        message: data.message,
-      }),
+      body: JSON.stringify(data),
     }).then((res) => {
       console.log('Fetch: ', res);
-      if (res.status === 200) alert('Message sent!');
+      if (res.status === 200)
+        alert('Message sent, thanks for getting in touch.');
+      // else alert('Something went wrong, please try again.');
     });
   };
 
