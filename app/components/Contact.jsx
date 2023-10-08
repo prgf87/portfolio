@@ -25,7 +25,6 @@ export default function Contact() {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    console.log(e, 'EVENT########');
     setLoading(true);
     setValidForm(emailRegex.test(email));
 
@@ -45,7 +44,6 @@ export default function Contact() {
         validation: validForm,
       }),
     }).then((res) => {
-      console.log('Fetch: ', res);
       if (res.status === 200)
         alert('Message sent, thanks for getting in touch.');
       else alert('Something went wrong, please try again.');
