@@ -15,7 +15,7 @@ export default function ExpCard({ exp }) {
     technologies,
   } = exp;
   return (
-    <article className="flex flex-col rounded-lg items-center space-y-4 flex-shrink-0 w-[350px] md:w-[600px] xl:w-[1200px] snap-center bg-slate-800 p-10 opacity-60 hover:opacity-100 cursor-pointer transition-opacity duration-200 max-h-[550px]">
+    <article className="flex flex-col overflow-hidden rounded-lg items-center space-y-4 flex-shrink-0 w-full md:w-[600px] xl:w-[1200px] snap-center bg-slate-800 p-4 sm:p-10 opacity-60 hover:opacity-100 cursor-pointer transition-opacity duration-200 max-h-[550px]">
       <motion.img
         initial={{ y: -100, opacity: 0 }}
         animate={{ opacity: 1, y: 0 }}
@@ -40,11 +40,11 @@ export default function ExpCard({ exp }) {
             );
           })}
         </div>
-        <p className="uppercase py-4 text-gray-500 text-center">
+        <p className="uppercase pb-2 text-gray-500 text-center">
           Started {dateStarted} -{' '}
           {!dateEnded ? 'Still working here' : `Ended ${dateEnded}`}
         </p>
-        <ul className="list-disc space-y-4 ml-5 text-xs xl:text-base">
+        <ul className="space-y-2 ml-5 text-xs xl:text-base">
           {points.slice(0, 6).map((point) => {
             return <li key={point}>{point}</li>;
           })}

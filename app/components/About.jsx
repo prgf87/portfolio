@@ -22,10 +22,10 @@ export default function About({ pageInfo }) {
         transition={{ duration: 1.2 }}
         src={urlFor(pageInfo.profileImage).url()}
         alt="A photograph of Pedro Ferreira wearing sunglasses and smiling, set against a backdrop of Porto, in Portugal"
-        className="-mb-20 md:mb-0 flex-shrink-0 w-64 h-64 rounded-full object-cover md:rounded-lg md:w-64 md:h-96 xl:w-[400px] xl:h-[500px] mt-20 md:mt-0 "
+        className="-mb-20 md:mb-0 flex-shrink-0 w-48 h-48 rounded-full object-cover md:rounded-lg md:w-64 md:h-96 xl:w-[400px] xl:h-[500px] mt-20 md:mt-0 "
       />
       <div className="space-y-4 px-2 md:pl-10 xl:pr-40 text-lg">
-        <h4 className="text-left sm:text-center md:text-left text-4xl">
+        <h4 className="text-left sm:text-center md:text-left text-2xl pt-4 sm:text-4xl">
           {pageInfo.backgroundTitle}
         </h4>
         <p className="text-sm sm:text-base lg:text-lg text-left sm:text-center md:text-left">
