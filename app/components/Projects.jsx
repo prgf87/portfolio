@@ -15,7 +15,7 @@ export default function Projects({ projects }) {
         {projects.map((p, i) => {
           return (
             <div
-              className="flex flex-col rounded-lg items-center space-y-4 flex-shrink-0 w-screen snap-center bg-slate-800 sm:mt-10 pt-10 cursor-pointer transition-opacity duration-200 max-h-[550px] z-20"
+              className="flex flex-col rounded-lg items-center space-y-4 flex-shrink-0 w-screen snap-center  sm:mt-10 pt-10 cursor-pointer transition-opacity duration-200 max-h-[550px] z-20"
               key={p._id}
             >
               <Link href={p.linkToBuild} className="m-0">

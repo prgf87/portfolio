@@ -21,8 +21,8 @@
 }
 
 .contact-input {
-  @apply outline-none w-[150px] bg-slate-100/30 rounded-sm border-b px-6 py-4 border-gray-800 transition-all placeholder:text-gray-400 focus:border-gray-300/60;
+  @apply outline-none w-[130px] sm:w-[150px] bg-slate-100/30 rounded-sm border-b px-6 py-4 border-gray-800 transition-all placeholder:text-gray-400 focus:border-gray-300/60;
 }
 .contact-input2 {
-  @apply outline-none w-[355px] bg-slate-100/30 rounded-sm border-b px-6 py-4 border-gray-800 transition-all placeholder:text-gray-400 focus:border-gray-300/60;
+  @apply outline-none w-[310px] sm:w-[355px] bg-slate-100/30 rounded-sm border-b px-6 py-4 border-gray-800 transition-all placeholder:text-gray-400 focus:border-gray-300/60;
 }

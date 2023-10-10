@@ -15,7 +15,7 @@ export default function ExpCard({ exp }) {
     technologies,
   } = exp;
   return (
-    <article className="flex flex-col overflow-hidden rounded-lg items-center space-y-4 flex-shrink-0 w-full md:w-[600px] xl:w-[1200px] snap-center bg-slate-800 p-4 sm:p-10 opacity-60 hover:opacity-100 cursor-pointer transition-opacity duration-200 max-h-[550px]">
+    <article className="flex flex-col overflow-hidden rounded-lg items-center space-y-4 flex-shrink-0 w-full md:w-[600px] xl:w-[1200px] snap-center bg-slate-800/70 p-4 sm:p-10 opacity-60 hover:opacity-100 cursor-pointer transition-opacity duration-200 max-h-[550px]">
       <motion.img
         initial={{ y: -100, opacity: 0 }}
         animate={{ opacity: 1, y: 0 }}
