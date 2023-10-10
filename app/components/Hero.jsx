@@ -28,10 +28,6 @@ export default function Hero({ pageInfo }) {
           <h2 className="text-sm sm:text-base uppercase text-gray-400 pb-2 tracking-[10px] sm:tracking-[15px]">
             {role}
           </h2>
-          {/* <h1 className="text-3xl lg:text-4xl">
-            <span>{text}</span>
-            <Cursor cursorColor="#eee" />
-          </h1> */}
           <div className="pt-5 space-x-2">
             <Link href="#about" className="btn">
               About

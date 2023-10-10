@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect } from 'react';
+import React from 'react';
 import {
   EnvelopeIcon,
   MapPinIcon,
@@ -19,23 +19,12 @@ export default function Contact() {
   const [subject, setSubject] = useState('');
   const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(false);
-  // const [validEmail, setValidEmail] = useState(false);
-  // const [validName, setValidName] = useState(false);
-  // const [validForm, setValidForm] = useState(false);
   const [sentEmail, setSentEmail] = useState(false);
-
-  // const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
-  // const nameRegex = /\b([A-ZÀ-ÿ][-,a-z. ']+[ ]*)+/gm;
 
   const submitHandler = async (e) => {
     e.preventDefault();
     setLoading(true);
 
-    // if (!validEmail || !validName) {
-    //   alert('Please provide a valid name and email address.');
-    //   setLoading(false);
-    //   return;
-    // } else {
     try {
       const response = await fetch('/api/mail', {
         method: 'POST',
@@ -48,7 +37,6 @@ export default function Contact() {
           email: email,
           subject: subject,
           message: message,
-          // validation: validForm,
         }),
       });
 
@@ -67,10 +55,7 @@ export default function Contact() {
     } finally {
       setLoading(false);
     }
-    // }
   };
-
-  // if (validEmail && validName) setValidForm(true);
 
   return (
     <div className="h-screen w-screen flex relative flex-col text-center md:text-left md:flex-row px-18 justify-evenly mx-auto items-center">
@@ -116,7 +101,6 @@ export default function Contact() {
               required
               onChange={(e) => {
                 setName(e.target.value);
-                // setValidName(nameRegex.test(name));
               }}
             />
 
@@ -131,7 +115,6 @@ export default function Contact() {
               autoComplete="off"
               onChange={(e) => {
                 setEmail(e.target.value);
-                // setValidEmail(emailRegex.test(email));
               }}
             />
           </div>

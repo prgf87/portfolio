@@ -2,6 +2,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import ExpCard from './ExpCard';
+
 export default function WorkExperience({ experiences }) {
   return (
     <motion.div
@@ -18,9 +19,6 @@ export default function WorkExperience({ experiences }) {
         {experiences.map((exp) => {
           return <ExpCard key={exp._id} exp={exp} />;
         })}
-        {/* <ExpCard />
-        <ExpCard />
-        <ExpCard /> */}
       </div>
     </motion.div>
   );

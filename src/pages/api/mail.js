@@ -3,12 +3,6 @@ import { sendMail } from '../../../utils/mailer';
 const handler = async (req, res) => {
   const { name, subject, email, message } = req.body;
 
-  // if (!validation) {
-  //   return res
-  //     .status(422)
-  //     .json({ error_code: 'validation-failed', message: 'Validation failed' });
-  // }
-
   try {
     const { method } = req;
     switch (method) {
