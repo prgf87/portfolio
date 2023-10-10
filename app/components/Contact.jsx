@@ -9,6 +9,7 @@ import {
 import { useState } from 'react';
 import ReCAPTCHA from 'react-google-recaptcha';
 import Link from 'next/link';
+import LoadingSpinner from './LoadingSpinner';
 
 const reCaptchaKey = process.env.NEXT_PUBLIC_GOOGLE_RECAPTCHA_SITE_KEY;
 
@@ -25,17 +26,21 @@ export default function Contact() {
   const nameRegex = /\b([A-ZÀ-ÿ][-,a-z. ']+[ ]*)+/gm;
 
   const submitHandler = async (e) => {
+    e.preventDefault();
     setLoading(true);
-    setValidForm(emailRegex.test(email));
-    if (!validForm) {
-      console.log('not valid');
-      setLoading(false);
+    try {
+      setValidForm(emailRegex.test(email));
+      if (!validForm) {
+        console.log('not valid');
+        // setLoading(false);
+        return;
+      }
+      console.log('here');
+      // setLoading(false);
       return;
+    } catch (err) {
+      console.log(err, 'ERRROR##########');
     }
-    console.log('here');
-    setLoading(false);
-    return;
-
     // fetch('/api/mail', {
     //   method: 'POST',
     //   headers: {
@@ -133,7 +138,7 @@ export default function Contact() {
             className={!captcha || !validForm ? `btn2-dis` : `btn2`}
             // disabled={!captcha || !validForm}
           >
-            {loading ? 'Loading...' : 'Submit'}
+            {loading ? <LoadingSpinner /> : 'Submit'}
             {/* Submit */}
           </button>
           <ReCAPTCHA
