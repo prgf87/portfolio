@@ -15,7 +15,7 @@ export default function WorkExperience({ experiences }) {
       <h3 className="absolute top-24 uppercase tracking-[8px] md:pl-0 text-gray-500 text-3xl">
         Experience
       </h3>
-      <div className="w-full flex space-x-5 overflow-x-scroll sm:p-10 snap-x snap-mandatory scrollbar scrollbar-track-gray-400/20 scrollbar-thumb-slate-100 mt-40 sm:mt-0">
+      <div className="w-full flex space-x-5 overflow-x-scroll sm:p-10 snap-x snap-mandatory scrollbar-thin scrollbar-track-gray-400/20 scrollbar-thumb-slate-100 mt-40 sm:mt-0">
         {experiences.map((exp) => {
           return <ExpCard key={exp._id} exp={exp} />;
         })}

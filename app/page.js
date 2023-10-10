@@ -25,7 +25,7 @@ export default async function Home() {
   } | order(_createdAt asc)`);
 
   return (
-    <main className="h-screen bg-slate-900 text-white snap-y snap-mandatory overflow-y-scroll z-0 overflow-x-hidden scrollbar scrollbar-track-gray-400/20 scrollbar-thumb-slate-100">
+    <main className="h-[100vh] bg-slate-900 text-white snap-y snap-mandatory overflow-y-scroll z-0 overflow-x-hidden scrollbar-thin scrollbar-corner-stone-800 scrollbar-track-gray-400/20 scrollbar-thumb-slate-100">
       <Header socials={socials} />
 
       <section id="hero" className="snap-center">
