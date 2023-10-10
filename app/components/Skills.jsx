@@ -19,8 +19,11 @@ export default function Skills({ skills }) {
         Hover over a skill
       </h4>
       <div className="grid grid-cols-4 gap-1 sm:gap-5 mt-20">
-        {skills.slice(0, 16).map((skill) => {
+        {skills.slice(0, 8).map((skill) => {
           return <Skill key={skill._id} skill={skill} />;
+        })}
+        {skills.slice(8, 16).map((skill) => {
+          return <Skill key={skill._id} skill={skill} directionLeft={true} />;
         })}
       </div>
     </motion.div>
