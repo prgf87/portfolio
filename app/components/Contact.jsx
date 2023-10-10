@@ -14,10 +14,10 @@ const reCaptchaKey = process.env.NEXT_PUBLIC_GOOGLE_RECAPTCHA_SITE_KEY;
 
 export default function Contact() {
   const [captcha, setCaptcha] = useState(null);
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [subject, setSubject] = useState('');
-  const [message, setMessage] = useState('');
+  const [name, setName] = useState('Test User');
+  const [email, setEmail] = useState('test@email.com');
+  const [subject, setSubject] = useState('Subject');
+  const [message, setMessage] = useState('This is the message');
   const [validForm, setValidForm] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -25,30 +25,35 @@ export default function Contact() {
   const nameRegex = /\b([A-ZÀ-ÿ][-,a-z. ']+[ ]*)+/gm;
 
   const submitHandler = async (e) => {
-    // e.preventDefault();
     setLoading(true);
     setValidForm(emailRegex.test(email));
+    if (!validForm) {
+      console.log('not valid');
+      setLoading(false);
+      return;
+    }
+    console.log('here');
+    setLoading(false);
+    return;
 
-    if (!validForm) return;
-
-    fetch('/api/mail', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/josn, text/plain, */*',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        name: name,
-        email: email,
-        subject: subject,
-        message: message,
-        validation: validForm,
-      }),
-    }).then((res) => {
-      if (res.status === 200)
-        alert('Message sent, thanks for getting in touch.');
-      else alert('Something went wrong, please try again.');
-    });
+    // fetch('/api/mail', {
+    //   method: 'POST',
+    //   headers: {
+    //     Accept: 'application/josn, text/plain, */*',
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify({
+    //     name: name,
+    //     email: email,
+    //     subject: subject,
+    //     message: message,
+    //     validation: validForm,
+    //   }),
+    // }).then((res) => {
+    //   if (res.status === 200)
+    //     alert('Message sent, thanks for getting in touch.');
+    //   else alert('Something went wrong, please try again.');
+    // });
   };
 
   return (
@@ -125,8 +130,8 @@ export default function Contact() {
           />
 
           <button
-            className={captcha || validForm ? `btn2` : `btn2-dis`}
-            disabled={!captcha || !validForm || loading}
+            className={!captcha || !validForm ? `btn2-dis` : `btn2`}
+            // disabled={!captcha || !validForm}
           >
             {loading ? 'Loading...' : 'Submit'}
             {/* Submit */}

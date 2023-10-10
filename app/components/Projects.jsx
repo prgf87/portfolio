@@ -11,11 +11,11 @@ export default function Projects({ projects }) {
       <h3 className="absolute text-center top-24 uppercase tracking-[8px] md:pl-0 text-gray-500 text-3xl">
         Projects
       </h3>
-      <div className="w-3/4 flex space-x-5 overflow-x-scroll p-10 snap-x snap-mandatory scrollbar scrollbar-track-gray-400/20 scrollbar-thumb-slate-100 z-20">
+      <div className="w-full flex space-x-5 overflow-x-scroll p-10 snap-x snap-mandatory scrollbar scrollbar-track-gray-400/20 scrollbar-thumb-slate-100 z-20">
         {projects.map((p, i) => {
           return (
             <div
-              className="flex flex-col rounded-lg items-center space-y-4 flex-shrink-0 w-screen snap-center bg-slate-800 p-20 cursor-pointer transition-opacity duration-200 max-h-[550px] z-20"
+              className="flex flex-col rounded-lg items-center space-y-4 flex-shrink-0 w-screen snap-center bg-slate-800 mt-10 py-10 cursor-pointer transition-opacity duration-200 max-h-[550px] z-20"
               key={p._id}
             >
               <Link href={p.linkToBuild} className="m-0">
@@ -26,7 +26,7 @@ export default function Projects({ projects }) {
                   viewport={{ once: true }}
                   src={urlFor(p.image).url()}
                   alt="/"
-                  className="max-w-full max-h-[300px] md:max-h-[400px] object-cover"
+                  className="max-w-full max-h-[300px] lg:max-h-[400px] object-cover"
                 />
               </Link>
               <div className="space-y-10 text-center px-0 md:px-10 max-w-6xl">
