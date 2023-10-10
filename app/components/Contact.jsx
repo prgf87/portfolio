@@ -18,10 +18,10 @@ export default function Contact() {
   const [email, setEmail] = useState('');
   const [subject, setSubject] = useState('');
   const [message, setMessage] = useState('');
-  const [validEmail, setValidEmail] = useState(false);
-  const [validName, setValidName] = useState(false);
-  const [validForm, setValidForm] = useState(false);
   const [loading, setLoading] = useState(false);
+  // const [validEmail, setValidEmail] = useState(false);
+  // const [validName, setValidName] = useState(false);
+  // const [validForm, setValidForm] = useState(false);
   const [sentEmail, setSentEmail] = useState(false);
 
   // const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
@@ -48,7 +48,7 @@ export default function Contact() {
           email: email,
           subject: subject,
           message: message,
-          validation: validForm,
+          // validation: validForm,
         }),
       });
 
@@ -66,12 +66,11 @@ export default function Contact() {
       alert('Sorry, something went wrong, please try again.');
     } finally {
       setLoading(false);
-      return;
     }
     // }
   };
 
-  if (validEmail && validName) setValidForm(true);
+  // if (validEmail && validName) setValidForm(true);
 
   return (
     <div className="h-screen w-screen flex relative flex-col text-center md:text-left md:flex-row px-18 justify-evenly mx-auto items-center">
@@ -154,7 +153,7 @@ export default function Contact() {
 
           <button
             className={!captcha ? `btn2-dis` : `btn2`}
-            disabled={!captcha || !validName || !validEmail}
+            disabled={!captcha || sentEmail ? true : false}
           >
             {loading ? <LoadingSpinner /> : 'Submit'}
           </button>
