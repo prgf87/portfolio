@@ -64,7 +64,7 @@ export default function Contact() {
           Contact me
         </h3>
         <div className="sm:space-y-6 flex flex-col mt-10">
-          <h4 className="hidden sm:inline-flex text-3xl sm:text-4xl font-semibold text-center">
+          <h4 className="sm:inline-flex text-2xl sm:text-4xl font-semibold text-center py-4 mt-4 sm:py-0">
             Lend me your ear..
           </h4>
 
@@ -88,12 +88,12 @@ export default function Contact() {
           </div>
           <form
             onSubmit={submitHandler}
-            className="flex flex-col sm:space-y-2 w-screen px-4 mt-4"
+            className="flex flex-col space-y-0.5 sm:space-y-2 w-screen px-4 mt-4"
           >
             <p className="text-center text-sm sm:text-xl pb-4">
               Please submit this form to contact me directly
             </p>
-            <div className="flex space-x-2">
+            <div className="flex space-x-0.5 sm:space-x-2">
               <input
                 placeholder="Name"
                 value={name}
@@ -134,20 +134,20 @@ export default function Contact() {
               required
               onChange={(e) => setMessage(e.target.value)}
             />
-
             <button
               className={!captcha ? `btn2-dis` : `btn2`}
               disabled={!captcha || sentEmail ? true : false}
             >
               {loading ? <LoadingSpinner /> : 'Submit'}
             </button>
+
             <ReCAPTCHA
               sitekey={reCaptchaKey}
               onChange={(e) => {
                 if (e !== undefined || e.length !== 0 || e !== null)
                   setCaptcha(true);
               }}
-              className="flex justify-center items-center mt-10 sm:mt-0"
+              className="flex justify-center items-center sm:mt-0"
             />
           </form>
         </div>
