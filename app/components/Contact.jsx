@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   EnvelopeIcon,
   MapPinIcon,
@@ -14,58 +14,64 @@ const reCaptchaKey = process.env.NEXT_PUBLIC_GOOGLE_RECAPTCHA_SITE_KEY;
 
 export default function Contact() {
   const [captcha, setCaptcha] = useState(null);
-  const [name, setName] = useState('Test User');
-  const [email, setEmail] = useState('test@email.com');
-  const [subject, setSubject] = useState('Subject');
-  const [message, setMessage] = useState('This is the message');
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [subject, setSubject] = useState('');
+  const [message, setMessage] = useState('');
   const [validEmail, setValidEmail] = useState(false);
   const [validName, setValidName] = useState(false);
   const [validForm, setValidForm] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [sentEmail, setSentEmail] = useState(false);
 
-  const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
-  const nameRegex = /\b([A-ZÀ-ÿ][-,a-z. ']+[ ]*)+/gm;
+  // const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
+  // const nameRegex = /\b([A-ZÀ-ÿ][-,a-z. ']+[ ]*)+/gm;
 
   const submitHandler = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setValidEmail(emailRegex.test(email));
-    setValidName(nameRegex.test(name));
-    if (validEmail && validName) {
-      try {
-        setValidForm(true);
-        await fetch('/api/mail', {
-          method: 'POST',
-          headers: {
-            Accept: 'application/josn, text/plain, */*',
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            name: name,
-            email: email,
-            subject: subject,
-            message: message,
-            validation: validForm,
-          }),
-        }).then((res) => {
-          if (res.status === 200) {
-            alert('Message sent, thanks for getting in touch.');
-            setLoading(false);
-          } else {
-            alert('Something went wrong, please try again.');
-            setLoading(false);
-          }
-        });
-      } catch (err) {
-        alert('Sorry, something went wrong, please try again.');
-        setLoading(false);
-        return;
+
+    // if (!validEmail || !validName) {
+    //   alert('Please provide a valid name and email address.');
+    //   setLoading(false);
+    //   return;
+    // } else {
+    try {
+      const response = await fetch('/api/mail', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json, text/plain, */*',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: name,
+          email: email,
+          subject: subject,
+          message: message,
+          validation: validForm,
+        }),
+      });
+
+      if (response.status === 200) {
+        setSentEmail(true);
+        alert('Message sent, thanks for getting in touch.');
+      } else {
+        const errorResponse = await response.json();
+        alert(
+          errorResponse.message || 'Something went wrong, please try again.'
+        );
       }
-    } else {
+    } catch (err) {
+      console.error(err);
+      alert('Sorry, something went wrong, please try again.');
+    } finally {
       setLoading(false);
-      console.log('Something went wrong!');
+      return;
     }
+    // }
   };
+
+  if (validEmail && validName) setValidForm(true);
 
   return (
     <div className="h-screen w-screen flex relative flex-col text-center md:text-left md:flex-row px-18 justify-evenly mx-auto items-center">
@@ -109,7 +115,10 @@ export default function Contact() {
               className="contact-input"
               type="text"
               required
-              onChange={(e) => setName(e.target.value)}
+              onChange={(e) => {
+                setName(e.target.value);
+                // setValidName(nameRegex.test(name));
+              }}
             />
 
             <input
@@ -121,7 +130,10 @@ export default function Contact() {
               autoCapitalize="off"
               autoCorrect="off"
               autoComplete="off"
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => {
+                setEmail(e.target.value);
+                // setValidEmail(emailRegex.test(email));
+              }}
             />
           </div>
           <input
@@ -142,13 +154,16 @@ export default function Contact() {
 
           <button
             className={!captcha ? `btn2-dis` : `btn2`}
-            disabled={!captcha}
+            disabled={!captcha || !validName || !validEmail}
           >
             {loading ? <LoadingSpinner /> : 'Submit'}
           </button>
           <ReCAPTCHA
             sitekey={reCaptchaKey}
-            onChange={setCaptcha}
+            onChange={(e) => {
+              if (e !== undefined || e.length !== 0 || e !== null)
+                setCaptcha(true);
+            }}
             className="flex justify-center items-center"
           />
         </form>

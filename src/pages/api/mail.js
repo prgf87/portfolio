@@ -2,26 +2,32 @@ import { sendMail } from '../../../utils/mailer';
 
 const handler = async (req, res) => {
   const { name, subject, email, message, validation } = req.body;
+
   if (!validation) {
-    res.status(500).end('Not allowed');
+    return res
+      .status(422)
+      .json({ error_code: 'validation-failed', message: 'Validation failed' });
   }
+
   try {
     const { method } = req;
     switch (method) {
-      case 'POST': {
+      case 'POST':
         await sendMail(name, subject, email, message);
-        res.status(200).send('Success');
-        break;
-      }
+        return res.status(200).json({ message: 'Email sent successfully' });
       default:
-        res.status(400).end(`Method ${method} Not Allowed`);
-        break;
+        return res
+          .status(405)
+          .json({
+            error_code: 'method-not-allowed',
+            message: `Method ${method} Not Allowed`,
+          });
     }
   } catch (err) {
-    res.status(400).json({
-      error_code: 'api-error',
-      message: err.message,
-    });
+    console.error(err);
+    return res
+      .status(500)
+      .json({ error_code: 'server-error', message: 'Internal server error' });
   }
 };
 
