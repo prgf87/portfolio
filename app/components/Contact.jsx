@@ -5,7 +5,6 @@ import {
   MapPinIcon,
   PhoneIcon,
 } from '@heroicons/react/24/outline';
-// import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import ReCAPTCHA from 'react-google-recaptcha';
 import Link from 'next/link';
