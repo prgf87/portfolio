@@ -58,97 +58,99 @@ export default function Contact() {
   };
 
   return (
-    <div className="h-screen w-screen flex relative flex-col text-center md:text-left md:flex-row px-18 justify-evenly mx-auto items-center">
-      <h3 className="absolute text-center top-24 uppercase tracking-[8px] pl-4 md:pl-0 text-gray-500 text-3xl">
-        Contact me
-      </h3>
-      <div className="space-y-6 flex flex-col mt-10">
-        <h4 className="text-4xl font-semibold text-center">
-          Lend me your ear..
-        </h4>
+    <div className="h-screen w-screen flex relative flex-col text-center md:text-left md:flex-row justify-evenly items-center text-xs ">
+      <div className="mr-4">
+        <h3 className="absolute text-center top-24 uppercase tracking-[8px] pl-16 md:pl-0 text-gray-500 text-3xl">
+          Contact me
+        </h3>
+        <div className="sm:space-y-6 flex flex-col mt-10">
+          <h4 className="hidden sm:inline-flex text-3xl sm:text-4xl font-semibold text-center">
+            Lend me your ear..
+          </h4>
 
-        <div className="space-y-4">
-          <div className="flex items-center space-x-5 justify-center">
-            <PhoneIcon className="h-8 w-8" />
-            <Link href="tel:+44 7472 097 891">
-              <p className="text-2xl">+44 7472 097 891</p>
-            </Link>
+          <div className="sm:space-y-4">
+            <div className="flex items-center space-x-5 justify-center">
+              <PhoneIcon className="h-6 w-6 sm:h-8 sm:w-8" />
+              <Link href="tel:+44 7472 097 891">
+                <p className="text-lg sm:text-2xl">+44 7472 097 891</p>
+              </Link>
+            </div>
+            <div className="flex items-center space-x-4 justify-center">
+              <EnvelopeIcon className="h-6 w-6 sm:h-8 sm:w-8" />
+              <Link href="mailto:prgf2011@gmail.com">
+                <p className="text-lg sm:text-2xl">prgf2011 [at] gmail.com</p>
+              </Link>
+            </div>
+            <div className="flex items-center space-x-5 justify-center">
+              <MapPinIcon className="h-6 w-6 sm:h-8 sm:w-8" />
+              <p className="text-lg sm:text-2xl">Kent - UK</p>
+            </div>
           </div>
-          <div className="flex items-center space-x-4 justify-center">
-            <EnvelopeIcon className="h-8 w-8" />
-            <Link href="mailto:prgf2011@gmail.com">
-              <p className="text-2xl">prgf2011 [at] gmail.com</p>
-            </Link>
-          </div>
-          <div className="flex items-center space-x-5 justify-center">
-            <MapPinIcon className="h-8 w-8" />
-            <p className="text-2xl">Kent - UK</p>
-          </div>
-        </div>
-        <form
-          onSubmit={submitHandler}
-          className="flex flex-col space-y-2 w-fit mx-auto"
-        >
-          <p className="text-center text-xl pb-4">
-            Please submit this form to contact me directly
-          </p>
-          <div className="flex space-x-2">
+          <form
+            onSubmit={submitHandler}
+            className="flex flex-col sm:space-y-2 w-screen px-4 mt-4"
+          >
+            <p className="text-center text-sm sm:text-xl pb-4">
+              Please submit this form to contact me directly
+            </p>
+            <div className="flex space-x-2">
+              <input
+                placeholder="Name"
+                value={name}
+                className="contact-input"
+                type="text"
+                required
+                onChange={(e) => {
+                  setName(e.target.value);
+                }}
+              />
+
+              <input
+                placeholder="Email"
+                value={email}
+                className="contact-input"
+                type="email"
+                required
+                autoCapitalize="off"
+                autoCorrect="off"
+                autoComplete="off"
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                }}
+              />
+            </div>
             <input
-              placeholder="Name"
-              value={name}
+              placeholder="Subject"
+              value={subject}
               className="contact-input"
               type="text"
               required
-              onChange={(e) => {
-                setName(e.target.value);
-              }}
+              onChange={(e) => setSubject(e.target.value)}
             />
-
-            <input
-              placeholder="Email"
-              value={email}
+            <textarea
+              placeholder="Message"
+              value={message}
               className="contact-input"
-              type="email"
               required
-              autoCapitalize="off"
-              autoCorrect="off"
-              autoComplete="off"
-              onChange={(e) => {
-                setEmail(e.target.value);
-              }}
+              onChange={(e) => setMessage(e.target.value)}
             />
-          </div>
-          <input
-            placeholder="Subject"
-            value={subject}
-            className="contact-input"
-            type="text"
-            required
-            onChange={(e) => setSubject(e.target.value)}
-          />
-          <textarea
-            placeholder="Message"
-            value={message}
-            className="contact-input"
-            required
-            onChange={(e) => setMessage(e.target.value)}
-          />
 
-          <button
-            className={!captcha ? `btn2-dis` : `btn2`}
-            disabled={!captcha || sentEmail ? true : false}
-          >
-            {loading ? <LoadingSpinner /> : 'Submit'}
-          </button>
-          <ReCAPTCHA
-            sitekey={reCaptchaKey}
-            onChange={(e) => {
-              if (e !== undefined || e.length !== 0 || e !== null)
-                setCaptcha(true);
-            }}
-            className="flex justify-center items-center"
-          />
-        </form>
+            <button
+              className={!captcha ? `btn2-dis` : `btn2`}
+              disabled={!captcha || sentEmail ? true : false}
+            >
+              {loading ? <LoadingSpinner /> : 'Submit'}
+            </button>
+            <ReCAPTCHA
+              sitekey={reCaptchaKey}
+              onChange={(e) => {
+                if (e !== undefined || e.length !== 0 || e !== null)
+                  setCaptcha(true);
+              }}
+              className="flex justify-center items-center mt-10 sm:mt-0"
+            />
+          </form>
+        </div>
       </div>
     </div>
   );
