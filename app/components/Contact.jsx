@@ -41,6 +41,7 @@ export default function Contact() {
       });
 
       if (response.status === 200) {
+        console.log(response);
         setSentEmail(true);
         alert('Message sent, thanks for getting in touch.');
       } else {
