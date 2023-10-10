@@ -19,6 +19,8 @@ export default function Contact() {
   const [email, setEmail] = useState('test@email.com');
   const [subject, setSubject] = useState('Subject');
   const [message, setMessage] = useState('This is the message');
+  const [validEmail, setValidEmail] = useState(false);
+  const [validName, setValidName] = useState(false);
   const [validForm, setValidForm] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -28,37 +30,41 @@ export default function Contact() {
   const submitHandler = async (e) => {
     e.preventDefault();
     setLoading(true);
-    try {
-      if (!validForm) {
+    setValidEmail(emailRegex.test(email));
+    setValidName(nameRegex.test(name));
+    if (validEmail && validName) {
+      try {
+        setValidForm(true);
+        await fetch('/api/mail', {
+          method: 'POST',
+          headers: {
+            Accept: 'application/josn, text/plain, */*',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            name: name,
+            email: email,
+            subject: subject,
+            message: message,
+            validation: validForm,
+          }),
+        }).then((res) => {
+          if (res.status === 200) {
+            alert('Message sent, thanks for getting in touch.');
+            setLoading(false);
+          } else {
+            alert('Something went wrong, please try again.');
+            setLoading(false);
+          }
+        });
+      } catch (err) {
         alert('Sorry, something went wrong, please try again.');
         setLoading(false);
         return;
       }
-      await fetch('/api/mail', {
-        method: 'POST',
-        headers: {
-          Accept: 'application/josn, text/plain, */*',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name: name,
-          email: email,
-          subject: subject,
-          message: message,
-          validation: validForm,
-        }),
-      }).then((res) => {
-        if (res.status === 200) {
-          alert('Message sent, thanks for getting in touch.');
-          setLoading(false);
-        } else {
-          alert('Something went wrong, please try again.');
-          setLoading(false);
-        }
-      });
-    } catch (err) {
-      console.log(err, 'ERRROR##########');
+    } else {
       setLoading(false);
+      console.log('Something went wrong!');
     }
   };
 
@@ -95,7 +101,7 @@ export default function Contact() {
           className="flex flex-col space-y-2 w-fit mx-auto"
         >
           <p className="text-center text-xl pb-4">
-            Please submit this form to contact me
+            Please submit this form to contact me directly
           </p>
           <div className="flex space-x-2">
             <input
