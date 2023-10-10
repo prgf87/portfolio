@@ -29,36 +29,37 @@ export default function Contact() {
     e.preventDefault();
     setLoading(true);
     try {
-      setValidForm(emailRegex.test(email));
       if (!validForm) {
-        console.log('not valid');
-        // setLoading(false);
+        alert('Sorry, something went wrong, please try again.');
+        setLoading(false);
         return;
       }
-      console.log('here');
-      // setLoading(false);
-      return;
+      await fetch('/api/mail', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/josn, text/plain, */*',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: name,
+          email: email,
+          subject: subject,
+          message: message,
+          validation: validForm,
+        }),
+      }).then((res) => {
+        if (res.status === 200) {
+          alert('Message sent, thanks for getting in touch.');
+          setLoading(false);
+        } else {
+          alert('Something went wrong, please try again.');
+          setLoading(false);
+        }
+      });
     } catch (err) {
       console.log(err, 'ERRROR##########');
+      setLoading(false);
     }
-    // fetch('/api/mail', {
-    //   method: 'POST',
-    //   headers: {
-    //     Accept: 'application/josn, text/plain, */*',
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify({
-    //     name: name,
-    //     email: email,
-    //     subject: subject,
-    //     message: message,
-    //     validation: validForm,
-    //   }),
-    // }).then((res) => {
-    //   if (res.status === 200)
-    //     alert('Message sent, thanks for getting in touch.');
-    //   else alert('Something went wrong, please try again.');
-    // });
   };
 
   return (
@@ -66,8 +67,8 @@ export default function Contact() {
       <h3 className="absolute text-center top-24 uppercase tracking-[8px] pl-4 md:pl-0 text-gray-500 text-3xl">
         Contact me
       </h3>
-      <div className="space-y-10 flex flex-col mt-10">
-        <h4 className="text-3xl font-semibold text-center">
+      <div className="space-y-6 flex flex-col mt-10">
+        <h4 className="text-4xl font-semibold text-center">
           Lend me your ear..
         </h4>
 
@@ -135,11 +136,10 @@ export default function Contact() {
           />
 
           <button
-            className={!captcha || !validForm ? `btn2-dis` : `btn2`}
-            // disabled={!captcha || !validForm}
+            className={!captcha ? `btn2-dis` : `btn2`}
+            disabled={!captcha}
           >
             {loading ? <LoadingSpinner /> : 'Submit'}
-            {/* Submit */}
           </button>
           <ReCAPTCHA
             sitekey={reCaptchaKey}
