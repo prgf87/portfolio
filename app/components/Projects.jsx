@@ -11,11 +11,11 @@ export default function Projects({ projects }) {
       <h3 className="absolute text-center top-24 uppercase tracking-[8px] md:pl-0 text-gray-500 text-3xl">
         Projects
       </h3>
-      <div className="w-3/4 flex space-x-5 overflow-x-scroll p-10 snap-x snap-mandatory scrollbar scrollbar-track-gray-400/20 scrollbar-thumb-slate-100 z-20">
+      <div className="w-full flex space-x-5 overflow-x-scroll p-10 snap-x snap-mandatory scrollbar scrollbar-track-gray-400/20 scrollbar-thumb-slate-100 z-20">
         {projects.map((p, i) => {
           return (
             <div
-              className="flex flex-col rounded-lg items-center space-y-4 flex-shrink-0 w-screen snap-center bg-slate-800 p-20 cursor-pointer transition-opacity duration-200 max-h-[550px] z-20"
+              className="flex flex-col rounded-lg items-center space-y-4 flex-shrink-0 w-screen snap-center bg-slate-800 mt-10 py-10 cursor-pointer transition-opacity duration-200 max-h-[550px] z-20"
               key={p._id}
             >
               <Link href={p.linkToBuild} className="m-0">
@@ -26,7 +26,7 @@ export default function Projects({ projects }) {
                   viewport={{ once: true }}
                   src={urlFor(p.image).url()}
                   alt="/"
-                  className="max-w-full max-h-[300px] md:max-h-[400px] object-cover"
+                  className="max-w-full max-h-[300px] lg:max-h-[400px] object-cover"
                 />
               </Link>
               <div className="space-y-10 text-center px-0 md:px-10 max-w-6xl">
@@ -46,29 +46,3 @@ export default function Projects({ projects }) {
     </div>
   );
 }
-
-// import React from 'react';
-
-// export default function Projects() {
-//   const projects = [1, 2, 3, 4, 5];
-//   return (
-//     <div className="h-screen relative overflow-hidden flex flex-col text-left md:flex-row max-w-full justify-evenly mx-auto items-center z-0">
-//       <h3 className="absolute text-center top-24 uppercase tracking-[8px] pl-4 md:pl-0 text-gray-500 text-3xl">
-//         Projects
-//       </h3>
-
-//       <div className="relative w-full flex overflow-x-scroll snap-x snap-mandatory z-10">
-//         {projects.map((p) => {
-//           <article className="w-screen flex-shrink-0 snap-center" key={p}>
-//             {/* <img src="/ak-logo.png" alt="/" /> */}
-//             <div>
-//               <h4>Case Study 1 of 3: E-Commerce website for AnaKnits</h4>
-//             </div>
-//           </article>;
-//         })}
-//       </div>
-
-//       <div className="w-full absolute top-[27%] bg-lime-500/20 left-0 h-[500px] -skew-y-12" />
-//     </div>
-//   );
-// }

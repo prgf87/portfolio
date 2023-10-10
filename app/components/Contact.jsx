@@ -5,10 +5,10 @@ import {
   MapPinIcon,
   PhoneIcon,
 } from '@heroicons/react/24/outline';
-// import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import ReCAPTCHA from 'react-google-recaptcha';
 import Link from 'next/link';
+import LoadingSpinner from './LoadingSpinner';
 
 const reCaptchaKey = process.env.NEXT_PUBLIC_GOOGLE_RECAPTCHA_SITE_KEY;
 
@@ -18,37 +18,43 @@ export default function Contact() {
   const [email, setEmail] = useState('');
   const [subject, setSubject] = useState('');
   const [message, setMessage] = useState('');
-  const [validForm, setValidForm] = useState(false);
   const [loading, setLoading] = useState(false);
-
-  const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
-  const nameRegex = /\b([A-ZÀ-ÿ][-,a-z. ']+[ ]*)+/gm;
+  const [sentEmail, setSentEmail] = useState(false);
 
   const submitHandler = async (e) => {
-    // e.preventDefault();
+    e.preventDefault();
     setLoading(true);
-    setValidForm(emailRegex.test(email));
 
-    if (!validForm) return;
+    try {
+      const response = await fetch('/api/mail', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json, text/plain, */*',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: name,
+          email: email,
+          subject: subject,
+          message: message,
+        }),
+      });
 
-    fetch('/api/mail', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/josn, text/plain, */*',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        name: name,
-        email: email,
-        subject: subject,
-        message: message,
-        validation: validForm,
-      }),
-    }).then((res) => {
-      if (res.status === 200)
+      if (response.status === 200) {
+        setSentEmail(true);
         alert('Message sent, thanks for getting in touch.');
-      else alert('Something went wrong, please try again.');
-    });
+      } else {
+        const errorResponse = await response.json();
+        alert(
+          errorResponse.message || 'Something went wrong, please try again.'
+        );
+      }
+    } catch (err) {
+      console.error(err);
+      alert('Sorry, something went wrong, please try again.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -56,8 +62,8 @@ export default function Contact() {
       <h3 className="absolute text-center top-24 uppercase tracking-[8px] pl-4 md:pl-0 text-gray-500 text-3xl">
         Contact me
       </h3>
-      <div className="space-y-10 flex flex-col mt-10">
-        <h4 className="text-3xl font-semibold text-center">
+      <div className="space-y-6 flex flex-col mt-10">
+        <h4 className="text-4xl font-semibold text-center">
           Lend me your ear..
         </h4>
 
@@ -84,7 +90,7 @@ export default function Contact() {
           className="flex flex-col space-y-2 w-fit mx-auto"
         >
           <p className="text-center text-xl pb-4">
-            Please submit this form to contact me
+            Please submit this form to contact me directly
           </p>
           <div className="flex space-x-2">
             <input
@@ -93,7 +99,9 @@ export default function Contact() {
               className="contact-input"
               type="text"
               required
-              onChange={(e) => setName(e.target.value)}
+              onChange={(e) => {
+                setName(e.target.value);
+              }}
             />
 
             <input
@@ -105,7 +113,9 @@ export default function Contact() {
               autoCapitalize="off"
               autoCorrect="off"
               autoComplete="off"
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => {
+                setEmail(e.target.value);
+              }}
             />
           </div>
           <input
@@ -125,15 +135,17 @@ export default function Contact() {
           />
 
           <button
-            className={captcha || validForm ? `btn2` : `btn2-dis`}
-            disabled={!captcha || !validForm || loading}
+            className={!captcha ? `btn2-dis` : `btn2`}
+            disabled={!captcha || sentEmail ? true : false}
           >
-            {loading ? 'Loading...' : 'Submit'}
-            {/* Submit */}
+            {loading ? <LoadingSpinner /> : 'Submit'}
           </button>
           <ReCAPTCHA
             sitekey={reCaptchaKey}
-            onChange={setCaptcha}
+            onChange={(e) => {
+              if (e !== undefined || e.length !== 0 || e !== null)
+                setCaptcha(true);
+            }}
             className="flex justify-center items-center"
           />
         </form>

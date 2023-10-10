@@ -25,13 +25,9 @@ export default function Hero({ pageInfo }) {
             height={800}
             className="rounded-full relative h-52 w-52 mx-auto border-2 border-white/20"
           />
-          <h2 className="uppercase text-gray-400 pb-2 tracking-[15px]">
+          <h2 className="text-sm sm:text-base uppercase text-gray-400 pb-2 tracking-[10px] sm:tracking-[15px]">
             {role}
           </h2>
-          {/* <h1 className="text-3xl lg:text-4xl">
-            <span>{text}</span>
-            <Cursor cursorColor="#eee" />
-          </h1> */}
           <div className="pt-5 space-x-2">
             <Link href="#about" className="btn">
               About

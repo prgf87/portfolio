@@ -1,5 +1,4 @@
 'use client';
-
 import React from 'react';
 import { SocialIcon } from 'react-social-icons';
 import { motion } from 'framer-motion';
@@ -33,9 +32,6 @@ export default function Header({ socials }) {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
         >
-          {/* <p className="uppercase md:hidden inline-flex text-base text-gray-500">
-          Get in Touch
-        </p> */}
           <EnvelopeIcon
             className="cursor-pointer h-6 w-6 text-gray-500 mr-2"
             network="email"
