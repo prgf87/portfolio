@@ -58,7 +58,7 @@ export default function Contact() {
   };
 
   return (
-    <div className="h-screen w-screen flex relative flex-col text-center md:text-left md:flex-row justify-evenly items-center text-xs">
+    <div className="h-screen w-screen flex relative flex-col text-center md:text-left md:flex-row justify-evenly items-center text-sm">
       <h3 className="absolute text-center top-24 uppercase tracking-[8px] sm:pl-16 md:pl-0 text-gray-500 text-3xl">
         Contact me
       </h3>
@@ -110,9 +110,6 @@ export default function Contact() {
               className="contact-input"
               type="email"
               required
-              autoCapitalize="off"
-              autoCorrect="off"
-              autoComplete="off"
               onChange={(e) => {
                 setEmail(e.target.value);
               }}
@@ -121,7 +118,7 @@ export default function Contact() {
           <input
             placeholder="Subject"
             value={subject}
-            className="contact-input"
+            className="contact-input2"
             type="text"
             required
             onChange={(e) => setSubject(e.target.value)}
@@ -129,7 +126,7 @@ export default function Contact() {
           <textarea
             placeholder="Message"
             value={message}
-            className="contact-input"
+            className="contact-input2"
             required
             onChange={(e) => setMessage(e.target.value)}
           />
