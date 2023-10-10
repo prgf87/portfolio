@@ -11,7 +11,7 @@ export default function Projects({ projects }) {
       <h3 className="absolute text-center top-24 uppercase tracking-[8px] md:pl-0 text-gray-500 text-3xl">
         Projects
       </h3>
-      <div className="w-full overflow-hidden flex space-x-5 overflow-x-scroll p-10 snap-x snap-mandatory scrollbar scrollbar-track-gray-400/20 scrollbar-thumb-slate-100 z-20 mt-24">
+      <div className="w-full overflow-hidden flex space-x-5 overflow-x-scroll p-10 snap-x snap-mandatory scrollbar-thin scrollbar-track-gray-400/20 scrollbar-thumb-slate-100 z-20 mt-24">
         {projects.map((p, i) => {
           return (
             <div
