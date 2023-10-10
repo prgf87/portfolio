@@ -44,6 +44,10 @@ export default function Contact() {
         console.log(response);
         setSentEmail(true);
         alert('Message sent, thanks for getting in touch.');
+        setName('');
+        setEmail('');
+        setSubject('');
+        setMessage('');
       } else {
         const errorResponse = await response.json();
         alert(
@@ -131,13 +135,16 @@ export default function Contact() {
             required
             onChange={(e) => setMessage(e.target.value)}
           />
-          <button
-            className={!captcha ? `btn2-dis` : `btn2`}
-            disabled={!captcha || sentEmail ? true : false}
-          >
-            {loading ? <LoadingSpinner /> : 'Submit'}
-          </button>
-
+          {sentEmail ? (
+            <p className="btn2-dis text-center">Message sent</p>
+          ) : (
+            <button
+              className={!captcha ? `btn2-dis` : `btn2`}
+              disabled={!captcha || sentEmail ? true : false}
+            >
+              {loading ? <LoadingSpinner /> : 'Submit'}
+            </button>
+          )}
           <ReCAPTCHA
             sitekey={reCaptchaKey}
             onChange={(e) => {
