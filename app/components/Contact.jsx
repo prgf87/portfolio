@@ -8,6 +8,7 @@ import {
 // import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import ReCAPTCHA from 'react-google-recaptcha';
+import Link from 'next/link';
 
 const reCaptchaKey = process.env.NEXT_PUBLIC_GOOGLE_RECAPTCHA_SITE_KEY;
 
@@ -24,7 +25,7 @@ export default function Contact() {
   const nameRegex = /\b([A-ZÀ-ÿ][-,a-z. ']+[ ]*)+/gm;
 
   const submitHandler = async (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     setLoading(true);
     setValidForm(emailRegex.test(email));
 
@@ -58,16 +59,20 @@ export default function Contact() {
       <div className="space-y-10 flex flex-col mt-10">
         <h4 className="text-3xl font-semibold text-center">
           Lend me your ear..
-          <br />
         </h4>
+
         <div className="space-y-4">
           <div className="flex items-center space-x-5 justify-center">
             <PhoneIcon className="h-8 w-8" />
-            <p className="text-2xl">+44 7472 097 891</p>
+            <Link href="tel:+44 7472 097 891">
+              <p className="text-2xl">+44 7472 097 891</p>
+            </Link>
           </div>
-          <div className="flex items-center space-x-5 justify-center">
+          <div className="flex items-center space-x-4 justify-center">
             <EnvelopeIcon className="h-8 w-8" />
-            <p className="text-2xl">prgf2011 [at] gmail.com</p>
+            <Link href="mailto:prgf2011@gmail.com">
+              <p className="text-2xl">prgf2011 [at] gmail.com</p>
+            </Link>
           </div>
           <div className="flex items-center space-x-5 justify-center">
             <MapPinIcon className="h-8 w-8" />
@@ -78,7 +83,9 @@ export default function Contact() {
           onSubmit={submitHandler}
           className="flex flex-col space-y-2 w-fit mx-auto"
         >
-          {/* <p className="text-center text-xl">Use the form to get in touch </p> */}
+          <p className="text-center text-xl pb-4">
+            Please submit this form to contact me
+          </p>
           <div className="flex space-x-2">
             <input
               placeholder="Name"
@@ -119,7 +126,7 @@ export default function Contact() {
 
           <button
             className={captcha || validForm ? `btn2` : `btn2-dis`}
-            // disabled={!captcha || !validForm || loading}
+            disabled={!captcha || !validForm || loading}
           >
             {loading ? 'Loading...' : 'Submit'}
             {/* Submit */}
