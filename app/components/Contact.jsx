@@ -148,8 +148,15 @@ export default function Contact() {
           <ReCAPTCHA
             sitekey={reCaptchaKey}
             onChange={(e) => {
-              if (e !== undefined || e.length !== 0 || e !== null)
-                setCaptcha(true);
+              const response = fetch('/api/captcha', {
+                method: 'POST',
+                body: e,
+              }).then(({ ok }) => {
+                if (ok) setCaptcha(true);
+                else res.status(400).send('Recaptcha failed, please try again');
+              });
+              // if (e !== undefined || e.length !== 0 || e !== null)
+              //   ;
             }}
             className="flex justify-center items-center sm:mt-0"
           />
