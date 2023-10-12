@@ -7,7 +7,6 @@ import {
 } from '@heroicons/react/24/outline';
 import { useState } from 'react';
 import ReCAPTCHA from 'react-google-recaptcha';
-import Link from 'next/link';
 import LoadingSpinner from './LoadingSpinner';
 
 const reCaptchaKey = process.env.NEXT_PUBLIC_GOOGLE_RECAPTCHA_SITE_KEY;
@@ -75,15 +74,11 @@ export default function Contact() {
         <div className="sm:space-y-4">
           <div className="flex items-center space-x-5 justify-center">
             <PhoneIcon className="h-4 w-4 sm:h-8 sm:w-8" />
-            <Link href="tel:+44 7472 097 891">
-              <p className="text-lg sm:text-2xl">+44 7472 097 891</p>
-            </Link>
+            <p className="text-lg sm:text-2xl">+44 7472 097 891</p>
           </div>
           <div className="flex items-center space-x-4 justify-center">
             <EnvelopeIcon className="h-4 w-4 sm:h-8 sm:w-8" />
-            <Link href="mailto:prgf2011@gmail.com">
-              <p className="text-lg sm:text-2xl">prgf2011 [at] gmail.com</p>
-            </Link>
+            <p className="text-lg sm:text-2xl">prgf2011 [at] gmail.com</p>
           </div>
           <div className="flex items-center space-x-5 justify-center">
             <MapPinIcon className="h-4 w-4 sm:h-8 sm:w-8" />
@@ -95,7 +90,7 @@ export default function Contact() {
           className="flex flex-col space-y-0.5 sm:space-y-2 mt-4"
         >
           <p className="text-center text-sm sm:text-xl pb-4">
-            Please submit this form to contact me directly
+            You can also contact me by filling in the form
           </p>
           <div className="flex space-x-0.5 sm:space-x-2">
             <input
@@ -148,12 +143,12 @@ export default function Contact() {
           <ReCAPTCHA
             sitekey={reCaptchaKey}
             onChange={(e) => {
-              const response = fetch('/api/captcha', {
+              fetch('/api/captcha', {
                 method: 'POST',
                 body: e,
               }).then(({ ok }) => {
-                if (ok) setCaptcha(true);
-                else res.status(400).send('Recaptcha failed, please try again');
+                if (ok === true) setCaptcha(true);
+                else alert('Recaptcha failed, please try again');
               });
               // if (e !== undefined || e.length !== 0 || e !== null)
               //   ;

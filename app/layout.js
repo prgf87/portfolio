@@ -1,7 +1,7 @@
 import './globals.css';
 
 export const metadata = {
-  title: "Pedro's Portfolio",
+  title: 'Global Web Systems - Web Developer',
   description: 'Created by Pedro Ferreira',
 };
 
