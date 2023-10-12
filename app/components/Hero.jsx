@@ -1,6 +1,5 @@
 'use client';
 import React from 'react';
-import Background from './Background';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
@@ -10,11 +9,7 @@ import BackgroundCircles from './BackgroundCircles';
 export default function Hero({ pageInfo }) {
   const { role, heroImage } = pageInfo;
   return (
-    <div
-      className="h-screen flex flex-col space-y-8 items-center justify-center text-center overflow-hidden top-0"
-      // className="h-screen flex flex-col space-y-8 items-center justify-center text-center overflow-hidden top-0"
-    >
-      {/* <Background /> */}
+    <div className="h-screen flex flex-col space-y-8 items-center justify-center text-center overflow-hidden top-0">
       <BackgroundCircles />
       <motion.div
         initial={{ opacity: 0 }}
@@ -33,7 +28,7 @@ export default function Hero({ pageInfo }) {
           <h2 className="text-sm sm:text-base uppercase text-gray-400 pb-2 tracking-[10px] sm:tracking-[15px]">
             {role}
           </h2>
-          <div className="pt-5 sm:space-x-2">
+          <div className="pt-8 sm:space-x-2">
             <Link href="#about" className="btn">
               About
             </Link>
