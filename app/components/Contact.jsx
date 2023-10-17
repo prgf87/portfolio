@@ -66,12 +66,12 @@ export default function Contact() {
       <h3 className="absolute text-center top-24 uppercase tracking-[8px] sm:pl-16 md:pl-0 text-gray-500 text-3xl">
         Contact me
       </h3>
-      <div className="sm:space-y-6 flex flex-col mt-10">
-        <h4 className="sm:inline-flex text-2xl sm:text-4xl font-semibold text-center sm:pl-12 py-4 mt-4 sm:py-0">
+      <div className="sm:space-y-4 flex flex-col xl:mt-40">
+        <h4 className="hidden xs:flex sm:inline-flex text-2xl sm:text-4xl font-semibold text-center sm:pl-12 pb-4 sm:py-0">
           Lend me your ear..
         </h4>
 
-        <div className="sm:space-y-4">
+        <div className="sm:space-y-4 pt-8 xs:pt-0">
           <div className="flex items-center space-x-5 justify-center">
             <PhoneIcon className="h-4 w-4 sm:h-8 sm:w-8" />
             <p className="text-lg sm:text-2xl">+44 7472 097 891</p>

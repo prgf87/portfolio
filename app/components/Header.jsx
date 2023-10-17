@@ -25,7 +25,7 @@ export default function Header({ socials }) {
           );
         })}
       </motion.section>
-      <Link href="#contact">
+      <Link href="#contact" target="_blank" rel="noopener noreferrer">
         <motion.section
           className="flex flex-row items-center"
           initial={{ opacity: 0, scale: 0.5 }}
