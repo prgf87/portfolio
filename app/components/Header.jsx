@@ -17,6 +17,7 @@ export default function Header({ socials }) {
         {socials.map((social) => {
           return (
             <SocialIcon
+              target="_blank"
               key={social._id}
               url={social.url}
               fgColor="gray"
@@ -25,7 +26,7 @@ export default function Header({ socials }) {
           );
         })}
       </motion.section>
-      <Link href="#contact" target="_blank" rel="noopener noreferrer">
+      <Link href="#contact">
         <motion.section
           className="flex flex-row items-center"
           initial={{ opacity: 0, scale: 0.5 }}
