@@ -14,11 +14,11 @@ export default function Skill({ directionLeft, skill }) {
         viewport={{ once: true }}
         src={urlFor(image).url()}
         alt={`${title} company logo`}
-        className="w-[65px] h-[65px] sm:w-24 sm:h-24 md:h-32 md:w-32 lg:w-36 lg:h-36 rounded-full object-center filter group-hover:grayscale transition duration-300 ease-in-out bg-slate-700/70"
+        className="w-[65px] h-[65px] sm:w-24 sm:h-24 md:h-28 md:w-28   rounded-full object-center filter group-hover:grayscale transition duration-300 ease-in-out bg-slate-700/70"
       />
-      <div className="absolute opacity-0 group-hover:opacity-100 transition duration-300 ease-in-out group-hover:bg-white h-[65px] w-[65px] sm:w-24 sm:h-24 md:h-32 md:w-32 lg:w-36 lg:h-36 rounded-full z-0">
+      <div className="absolute opacity-0 group-hover:opacity-100 transition duration-300 ease-in-out group-hover:bg-white h-[65px] w-[65px] sm:w-24 sm:h-24 md:h-28 md:w-28   rounded-full z-0">
         <div className="flex items-center justify-center h-full">
-          <p className="text-base sm:text-xl lg:text-3xl font-semibold text-black opacity-100">{`${progress}%`}</p>
+          <p className="text-base sm:text-xl  font-semibold text-black opacity-100">{`${progress}%`}</p>
         </div>
       </div>
     </div>

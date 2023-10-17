@@ -9,7 +9,7 @@ import Skills from './components/Skills';
 import WorkExperience from './components/WorkExperience';
 import { client } from '@/sanity/lib/client';
 
-export const revalidate = 10;
+export const revalidate = 28800;
 
 export default async function Home() {
   const pageInfo = await client.fetch(`*[_type == "pageInfo"][0]`);
@@ -47,7 +47,7 @@ export default async function Home() {
         <Contact />
       </section>
       <section id="footer" className="sticky bottom-5">
-        <Link href="#hero">
+        <Link href="#hero" target="_blank" rel="noopener noreferrer">
           <Footer pageInfo={pageInfo} />
         </Link>
       </section>

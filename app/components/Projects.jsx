@@ -18,7 +18,12 @@ export default function Projects({ projects }) {
               className="flex flex-col rounded-lg items-center space-y-4 flex-shrink-0 w-screen snap-center  sm:mt-10 pt-10 cursor-pointer transition-opacity duration-200 max-h-[550px] z-20"
               key={p._id}
             >
-              <Link href={p.linkToBuild} className="m-0">
+              <Link
+                href={p.linkToBuild}
+                className="m-0"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <motion.img
                   initial={{ y: -50, opacity: 0 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -26,7 +31,7 @@ export default function Projects({ projects }) {
                   viewport={{ once: true }}
                   src={urlFor(p.image).url()}
                   alt="/"
-                  className="max-w-full max-h-[200px] sm:max-h-[300px] lg:max-h-[400px] object-cover"
+                  className="max-w-full max-h-[200px] sm:max-h-[300px]  object-cover"
                 />
               </Link>
               <div className="space-y-4 text-center px-0 md:px-10 max-w-6xl">

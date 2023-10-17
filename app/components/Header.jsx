@@ -17,6 +17,7 @@ export default function Header({ socials }) {
         {socials.map((social) => {
           return (
             <SocialIcon
+              target="_blank"
               key={social._id}
               url={social.url}
               fgColor="gray"
