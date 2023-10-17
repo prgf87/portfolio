@@ -14,7 +14,9 @@ export async function sendMail(name, subject, email, message) {
     to: process.env.NODEMAILER_EMAIL,
     name: name,
     subject: subject,
-    text: 'From: ' + email + '\n' + message,
+    text: `From: ${email} \n
+    ${message}`,
+    // 'From: ' + email + '\n' + message,
   };
 
   await new Promise((resolve, reject) => {
