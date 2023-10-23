@@ -47,7 +47,7 @@ export default async function Home() {
         <Contact />
       </section>
       <section id="footer" className="sticky bottom-5">
-        <Link href="#hero" target="_blank" rel="noopener noreferrer">
+        <Link href="#hero" rel="noopener noreferrer">
           <Footer pageInfo={pageInfo} />
         </Link>
       </section>
