@@ -28,15 +28,19 @@ export default function ExpCard({ exp }) {
       <div className="px-0">
         <h4 className="text-2xl font-extralight text-center">{jobTitle}</h4>
         <p className="font-semibold text-2xl mt-1 text-center">{company}</p>
-        <div className="flex space-x-2 my-2 justify-center">
-          {technologies.slice(0, 7).map((tech) => {
+        <div className="flex space-x-6 my-2 py-1 justify-center items-center">
+          {technologies.slice(0, 5).map((tech) => {
             return (
-              <img
-                key={tech._id}
-                src={urlFor(tech.image).url()}
-                alt="/"
-                className="h-8 w-8 rounded-full object-center p-1"
-              />
+              <div key={tech._id} className="text-center">
+                <div>
+                  <img
+                    src={urlFor(tech.image).url()}
+                    alt="/"
+                    className="p-0.5 h-10 w-10 rounded-full object-center mx-auto border border-black/30 bg-white"
+                  />
+                  <p className="text-xs">{tech.title}</p>
+                </div>
+              </div>
             );
           })}
         </div>
@@ -44,8 +48,9 @@ export default function ExpCard({ exp }) {
           Started {dateStarted} -{' '}
           {!dateEnded ? 'Still working here' : `Ended ${dateEnded}`}
         </p>
+
         <ul className="space-y-2 ml-5 text-xs xl:text-base">
-          {points.slice(0, 6).map((point) => {
+          {points.slice(0, 4).map((point) => {
             return <li key={point}>{point}</li>;
           })}
         </ul>
