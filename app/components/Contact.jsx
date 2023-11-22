@@ -23,41 +23,45 @@ export default function Contact() {
   const submitHandler = async (e) => {
     e.preventDefault();
     setLoading(true);
+    if (captcha === true) {
+      try {
+        const response = await fetch('/api/mail', {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json, text/plain, */*',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            name: name,
+            email: email,
+            subject: subject,
+            message: message,
+          }),
+        });
 
-    try {
-      const response = await fetch('/api/mail', {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json, text/plain, */*',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name: name,
-          email: email,
-          subject: subject,
-          message: message,
-        }),
-      });
-
-      if (response.status === 200) {
-        console.log(response);
-        setSentEmail(true);
-        alert('Message sent, thanks for getting in touch.');
-        setName('');
-        setEmail('');
-        setSubject('');
-        setMessage('');
-      } else {
-        const errorResponse = await response.json();
-        alert(
-          errorResponse.message || 'Something went wrong, please try again.'
-        );
+        if (response.status === 200) {
+          console.log(response);
+          setSentEmail(true);
+          alert('Message sent, thanks for getting in touch.');
+          setName('');
+          setEmail('');
+          setSubject('');
+          setMessage('');
+        } else {
+          const errorResponse = await response.json();
+          alert(
+            errorResponse.message || 'Something went wrong, please try again.'
+          );
+        }
+      } catch (err) {
+        console.error(err);
+        alert('Sorry, something went wrong, please try again.');
+      } finally {
+        setLoading(false);
       }
-    } catch (err) {
-      console.error(err);
-      alert('Sorry, something went wrong, please try again.');
-    } finally {
+    } else {
       setLoading(false);
+      return;
     }
   };
 
