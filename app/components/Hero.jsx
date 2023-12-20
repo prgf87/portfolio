@@ -28,7 +28,7 @@ export default function Hero({ pageInfo }) {
           <h2 className="text-sm sm:text-base uppercase text-gray-400 pb-2 tracking-[10px] sm:tracking-[15px]">
             {role}
           </h2>
-          <div className="pt-8 sm:space-x-2">
+          <div className="grid grid-cols-2 mx-auto pt-8 sm:flex sm:space-x-2">
             <Link href="#about" className="btn">
               About
             </Link>

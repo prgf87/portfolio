@@ -28,7 +28,7 @@ export default function Header({ socials }) {
       </motion.section>
       <Link href="#contact">
         <motion.section
-          className="flex flex-row items-center"
+          className="flex flex-row items-center mt-[14px]"
           initial={{ opacity: 0, scale: 0.5 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}

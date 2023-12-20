@@ -6,6 +6,7 @@ import { urlFor } from '@/sanity/lib/client';
 import Link from 'next/link';
 
 export default function Projects({ projects }) {
+  console.log(projects, 'PROJECTS##############');
   return (
     <div className="h-screen relative flex flex-col text-left md:flex-row max-w-full justify-evenly mx-auto items-center z-0">
       <h3 className="absolute text-center top-24 uppercase tracking-[8px] md:pl-0 text-gray-500 text-3xl">

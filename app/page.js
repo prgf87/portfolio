@@ -22,7 +22,7 @@ export default async function Home() {
   const projects = await client.fetch(`*[_type == "projects"] {
     ...,
     technologies[]->
-  } | order(_createdAt asc)`);
+  } | order(_createdAt desc)`);
 
   return (
     <main className="h-[100vh] bg-slate-900 text-white snap-y snap-mandatory overflow-y-scroll z-0 overflow-x-hidden scrollbar-thin scrollbar-corner-stone-800 scrollbar-track-gray-400/20 scrollbar-thumb-slate-100">
