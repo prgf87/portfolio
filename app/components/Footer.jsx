@@ -7,7 +7,7 @@ import { urlFor } from '@/sanity/lib/client';
 export default function Footer({ pageInfo }) {
   return (
     <div className="flex justify-center items-center">
-      <div className="h-10 w-10 rounded-full">
+      <div className="h-8 sm:h-16 w-8 sm:w-16 rounded-full">
         <motion.img
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}

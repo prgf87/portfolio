@@ -8,12 +8,13 @@ function BackgroundCircles() {
         opacity: 0,
       }}
       animate={{
-        scale: [0, 1, 1, 1.5, 1],
+        scale: [2, 1.5, 1.5, 1, 1],
         opacity: [0.1, 0.2, 0.4, 0.5, 0.3, 0.6],
         borderRadius: ['10%', '20%', '50%', '80%', '100%'],
       }}
       transition={{
-        duration: 2.5,
+        delay: 0.2,
+        duration: 1.0,
       }}
       className="relative flex justify-center items-center"
     >
