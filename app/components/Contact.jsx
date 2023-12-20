@@ -154,8 +154,6 @@ export default function Contact() {
                 if (ok === true) setCaptcha(true);
                 else alert('Recaptcha failed, please try again');
               });
-              // if (e !== undefined || e.length !== 0 || e !== null)
-              //   ;
             }}
             className="flex justify-center items-center sm:mt-0"
           />
