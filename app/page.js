@@ -1,15 +1,15 @@
-import Link from 'next/link';
-import About from './components/About';
-import Contact from './components/Contact';
-import Footer from './components/Footer';
-import Header from './components/Header';
-import Hero from './components/Hero';
-import Projects from './components/Projects';
-import Skills from './components/Skills';
-import WorkExperience from './components/WorkExperience';
-import { client } from '@/sanity/lib/client';
+import Link from "next/link";
+import About from "./components/About";
+import Contact from "./components/Contact";
+import Footer from "./components/Footer";
+import Header from "./components/Header";
+import Hero from "./components/Hero";
+import Projects from "./components/Projects";
+import Skills from "./components/Skills";
+import WorkExperience from "./components/WorkExperience";
+import { client } from "@/sanity/lib/client";
 
-export const revalidate = 28800;
+export const revalidate = 3600;
 
 export default async function Home() {
   const pageInfo = await client.fetch(`*[_type == "pageInfo"][0]`);
