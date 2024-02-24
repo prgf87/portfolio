@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://www.globalwebsystems.co.uk/
+
+# Sitemaps
+Sitemap: https://www.globalwebsystems.co.uk/sitemap.xml
