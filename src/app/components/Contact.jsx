@@ -23,44 +23,38 @@ export default function Contact() {
   const submitHandler = async (e) => {
     e.preventDefault();
     setLoading(true);
-    if (captcha === true) {
-      try {
-        const response = await fetch('/api/mail', {
-          method: 'POST',
-          headers: {
-            Accept: 'application/json, text/plain, */*',
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            name: name,
-            email: email,
-            subject: subject,
-            message: message,
-          }),
-        });
 
-        if (response.status === 200) {
-          setSentEmail(true);
-          alert('Message sent, thanks for getting in touch.');
-          setName('');
-          setEmail('');
-          setSubject('');
-          setMessage('');
-        } else {
-          const errorResponse = await response.json();
-          alert(
-            errorResponse.message || 'Something went wrong, please try again.'
-          );
-        }
-      } catch (err) {
-        console.error(err);
-        alert('Sorry, something went wrong, please try again.');
-      } finally {
+    try {
+      const response = await fetch('/api/mail', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json, text/plain, */*',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: name,
+          email: email,
+          subject: subject,
+          message: message,
+        }),
+      });
+
+      if (response.status === 200) {
         setLoading(false);
+        setSentEmail(true);
+        setName('');
+        setEmail('');
+        setSubject('');
+        setMessage('');
+      } else {
+        const errorResponse = await response.json();
+        throw new Error(
+          errorResponse.message || 'Something went wrong, please try again.'
+        );
       }
-    } else {
+    } catch (err) {
       setLoading(false);
-      return;
+      console.error(err);
     }
   };
 
@@ -102,6 +96,7 @@ export default function Contact() {
               className="contact-input"
               type="text"
               required
+              autoComplete="name"
               onChange={(e) => {
                 setName(e.target.value);
               }}
@@ -113,6 +108,7 @@ export default function Contact() {
               className="contact-input"
               type="email"
               required
+              autoComplete="email"
               onChange={(e) => {
                 setEmail(e.target.value);
               }}
@@ -124,6 +120,7 @@ export default function Contact() {
             className="contact-input2"
             type="text"
             required
+            autoComplete="subject"
             onChange={(e) => setSubject(e.target.value)}
           />
           <textarea
@@ -131,6 +128,7 @@ export default function Contact() {
             value={message}
             className="contact-input2"
             required
+            autoComplete="message"
             onChange={(e) => setMessage(e.target.value)}
           />
           {sentEmail ? (
