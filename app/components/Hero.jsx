@@ -1,10 +1,10 @@
-"use client";
-import React from "react";
-import Image from "next/image";
-import { motion } from "framer-motion";
-import Link from "next/link";
-import { urlFor } from "@/sanity/lib/client";
-import BackgroundCircles from "./BackgroundCircles";
+'use client';
+import React from 'react';
+import Image from 'next/image';
+import { motion } from 'framer-motion';
+import Link from 'next/link';
+import { urlFor } from '@/sanity/lib/client';
+import BackgroundCircles from './BackgroundCircles';
 
 export default function Hero({ pageInfo }) {
   const { role, heroImage } = pageInfo;
@@ -14,7 +14,7 @@ export default function Hero({ pageInfo }) {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: [0, 0, 0.8, 1] }}
-        transition={{ duration: 2.5, delay: 2 }}
+        transition={{ duration: 1.5, delay: 0.5 }}
         className="z-[2]"
       >
         <div className="relative bottom-[25px]">
