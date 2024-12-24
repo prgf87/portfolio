@@ -4,6 +4,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { urlFor } from '../../sanity/lib/image';
+import Skill from './Skill';
 
 export default function Projects({ projects }) {
   return (
@@ -11,11 +12,11 @@ export default function Projects({ projects }) {
       <h3 className="absolute text-center top-24 uppercase tracking-[8px] md:pl-0 text-gray-500 text-3xl">
         Projects
       </h3>
-      <div className="w-full overflow-hidden flex space-x-5 overflow-x-scroll p-10 snap-x snap-mandatory scrollbar-thin scrollbar-track-gray-400/20 scrollbar-thumb-slate-100 z-20 mt-24">
+      <div className="w-full overflow-hidden flex space-x-5 overflow-x-scroll p-10 snap-x snap-mandatory scrollbar scrollbar-track-gray-400/20 scrollbar-thumb-slate-100 z-20 mt-10">
         {projects.map((p, i) => {
           return (
             <div
-              className="flex flex-col rounded-lg items-center space-y-4 flex-shrink-0 w-screen snap-center  sm:mt-10 pt-10 cursor-pointer transition-opacity duration-200 max-h-[550px] z-20"
+              className="flex flex-col rounded-lg items-center space-y-4 flex-shrink-0 w-full snap-center  sm:mt-10 pt-10 transition-opacity duration-200 max-h-[600px] z-20"
               key={p._id}
             >
               <Link
@@ -36,14 +37,26 @@ export default function Projects({ projects }) {
               </Link>
               <div className="space-y-4 text-center px-0 md:px-10 max-w-6xl">
                 <h4 className="text-2xl mt-4 font-semibold">
-                  <span className="underline decoration-[#eee]/60">
+                  <span>
                     Case Study {i + 1} of {projects.length}:
                   </span>{' '}
-                  {p.title}{' '}
+                  <Link
+                    href={'https://www.webuyanygold.com'}
+                    className="underline decoration-[#eee]/60 hover:text-gray-300"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {p.title}{' '}
+                  </Link>
                 </h4>
                 <p className="text-xs sm:text-base px-4 sm:px-10">
                   {p.summary}
                 </p>
+              </div>
+              <div className={`flex flex-row px-8 gap-1 scale-75`}>
+                {p.technologies.slice(0, 8).map((skill) => {
+                  return <Skill key={skill._id} skill={skill} />;
+                })}
               </div>
             </div>
           );
