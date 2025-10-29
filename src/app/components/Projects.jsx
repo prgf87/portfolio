@@ -41,7 +41,7 @@ export default function Projects({ projects }) {
                     Case Study {i + 1} of {projects.length}:
                   </span>{' '}
                   <Link
-                    href={'https://www.webuyanygold.com'}
+                    href={p.linkToBuild}
                     className="underline decoration-[#eee]/60 hover:text-gray-300"
                     target="_blank"
                     rel="noopener noreferrer"

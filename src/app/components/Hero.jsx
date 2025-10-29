@@ -24,6 +24,7 @@ export default function Hero({ pageInfo }) {
             width={800}
             height={800}
             className="rounded-full relative h-48 w-48 mx-auto border-2 border-gray-400/20"
+            priority
           />
           <h2 className="text-sm sm:text-base uppercase text-gray-400 pt-4 tracking-[10px] sm:tracking-[15px]">
             {role}

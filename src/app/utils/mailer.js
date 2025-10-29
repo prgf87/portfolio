@@ -13,7 +13,7 @@ export async function sendMail(name, subject, email, message) {
     from: email,
     to: process.env.NODEMAILER_EMAIL,
     name: name,
-    subject: subject,
+    subject: `GlobalWebSystems Enquiry Email - ${subject}`,
     text: `From: ${email} \n
     ${message}`,
     // 'From: ' + email + '\n' + message,
