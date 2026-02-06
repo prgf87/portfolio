@@ -8,6 +8,7 @@ import {
 import { useState } from 'react';
 import ReCAPTCHA from 'react-google-recaptcha';
 import LoadingSpinner from './LoadingSpinner';
+import { useAnalytics } from './analytics/useAnalytics';
 
 const reCaptchaKey = process.env.NEXT_PUBLIC_GOOGLE_RECAPTCHA_SITE_KEY;
 
@@ -19,6 +20,7 @@ export default function Contact() {
   const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(false);
   const [sentEmail, setSentEmail] = useState(false);
+  const { trackContactSubmit } = useAnalytics();
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -42,6 +44,7 @@ export default function Contact() {
       if (response.status === 200) {
         setLoading(false);
         setSentEmail(true);
+        trackContactSubmit(true);
         setName('');
         setEmail('');
         setSubject('');
@@ -54,6 +57,7 @@ export default function Contact() {
       }
     } catch (err) {
       setLoading(false);
+      trackContactSubmit(false);
       console.error(err);
     }
   };

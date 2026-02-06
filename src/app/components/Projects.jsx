@@ -5,8 +5,11 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { urlFor } from '../../sanity/lib/image';
 import Skill from './Skill';
+import { useAnalytics } from './analytics/useAnalytics';
 
 export default function Projects({ projects }) {
+  const { trackProjectClick } = useAnalytics();
+
   return (
     <div className="h-screen relative flex flex-col text-left md:flex-row max-w-full justify-evenly mx-auto items-center z-0">
       <h3 className="absolute text-center top-24 uppercase tracking-[8px] md:pl-0 text-gray-500 text-3xl">
@@ -24,6 +27,7 @@ export default function Projects({ projects }) {
                 className="m-0"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackProjectClick(p.title, p.linkToBuild)}
               >
                 <motion.img
                   initial={{ y: -50, opacity: 0 }}
@@ -45,6 +49,7 @@ export default function Projects({ projects }) {
                     className="underline decoration-[#eee]/60 hover:text-gray-300"
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={() => trackProjectClick(p.title, p.linkToBuild)}
                   >
                     {p.title}{' '}
                   </Link>
