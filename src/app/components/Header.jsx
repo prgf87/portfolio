@@ -4,8 +4,11 @@ import { SocialIcon } from "react-social-icons";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { EnvelopeIcon } from "@heroicons/react/24/outline";
+import { useAnalytics } from "./analytics/useAnalytics";
 
 export default function Header({ socials }) {
+  const { trackSocialClick } = useAnalytics();
+
   return (
     <header className="sticky top-0 p-5 flex items-start justify-between max-w-7xl mx-auto z-20 xl:items-center ">
       <motion.section
@@ -16,13 +19,17 @@ export default function Header({ socials }) {
       >
         {socials.map((social) => {
           return (
-            <SocialIcon
-              target="_blank"
+            <div
               key={social._id}
-              url={social.url}
-              fgColor="gray"
-              bgColor="transparent"
-            />
+              onClick={() => trackSocialClick(social.title, social.url)}
+            >
+              <SocialIcon
+                target="_blank"
+                url={social.url}
+                fgColor="gray"
+                bgColor="transparent"
+              />
+            </div>
           );
         })}
       </motion.section>

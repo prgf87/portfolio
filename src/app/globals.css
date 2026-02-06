@@ -8,21 +8,24 @@
   box-sizing: content-box;
   scroll-behavior: smooth;
 }
+html {
+  font-size: 17px;
+}
 
 .btn {
-  @apply px-3 sm:px-6 py-2 border border-slate-800 rounded-full uppercase text-xs tracking-widest text-gray-500 transition-all hover:border-slate-500/70 hover:text-slate-100/80;
+  @apply px-3 sm:px-6 py-2 border border-slate-800 rounded-full uppercase text-xs tracking-widest text-gray-500 transition-all hover:border-slate-500/70 hover:text-gray-100;
 }
 
 .btn2 {
-  @apply px-10 py-5 border bg-slate-400/70 border-slate-600 rounded-md uppercase tracking-widest text-gray-300 transition-all hover:border-slate-300/70 hover:text-slate-400/80 text-lg font-bold;
+  @apply px-10 py-5 border bg-slate-400/70 border-slate-600 rounded-md uppercase tracking-widest text-gray-300 transition-all hover:border-slate-300/70 hover:text-gray-100 text-lg font-bold;
 }
 .btn2-dis {
-  @apply px-10 py-5 border bg-slate-400/30 border-slate-600 rounded-md uppercase tracking-widest text-gray-100/30 transition-all text-lg font-bold;
+  @apply px-10 py-5 border bg-slate-800/30 border-slate-600 rounded-md uppercase tracking-widest text-gray-400/90 transition-all text-lg font-bold cursor-not-allowed;
 }
 
 .contact-input {
-  @apply outline-none w-[130px] sm:w-[150px] bg-slate-100/30 rounded-sm border-b px-6 py-4 border-gray-800 transition-all placeholder:text-gray-400 focus:border-gray-300/60;
+  @apply outline-none w-[130px] sm:min-w-[250px] bg-slate-100/30 rounded-sm border-b px-6 py-4 border-gray-800 transition-all placeholder:text-gray-300 focus:border-gray-300/60;
 }
 .contact-input2 {
-  @apply outline-none w-[310px] sm:w-[355px] bg-slate-100/30 rounded-sm border-b px-6 py-4 border-gray-800 transition-all placeholder:text-gray-400 focus:border-gray-300/60;
+  @apply outline-none min-w-[310px] sm:min-w-[555px] bg-slate-100/30 rounded-sm border-b px-6 py-4 border-gray-800 transition-all placeholder:text-gray-300 focus:border-gray-300/60;
 }

@@ -8,6 +8,7 @@ import {
 import { useState } from 'react';
 import ReCAPTCHA from 'react-google-recaptcha';
 import LoadingSpinner from './LoadingSpinner';
+import { useAnalytics } from './analytics/useAnalytics';
 
 const reCaptchaKey = process.env.NEXT_PUBLIC_GOOGLE_RECAPTCHA_SITE_KEY;
 
@@ -19,6 +20,7 @@ export default function Contact() {
   const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(false);
   const [sentEmail, setSentEmail] = useState(false);
+  const { trackContactSubmit } = useAnalytics();
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -42,6 +44,7 @@ export default function Contact() {
       if (response.status === 200) {
         setLoading(false);
         setSentEmail(true);
+        trackContactSubmit(true);
         setName('');
         setEmail('');
         setSubject('');
@@ -54,41 +57,45 @@ export default function Contact() {
       }
     } catch (err) {
       setLoading(false);
+      trackContactSubmit(false);
       console.error(err);
     }
   };
 
   return (
-    <div className="h-screen w-screen flex relative flex-col text-center md:text-left md:flex-row justify-evenly items-center text-sm">
-      <h3 className="absolute text-center top-24 uppercase tracking-[8px] sm:pl-16 md:pl-0 text-gray-500 text-3xl">
+    <div className="h-screen w-screen flex relative flex-col text-center md:text-left md:flex-row justify-evenly items-center">
+      <h3 className="absolute text-center top-24 uppercase tracking-[8px]  text-gray-500 text-3xl">
         Contact me
       </h3>
-      <div className="sm:space-y-4 flex flex-col xl:mt-40">
-        <h4 className="hidden xs:flex sm:inline-flex text-2xl sm:text-4xl font-semibold text-center sm:pl-12 pb-4 sm:py-0">
+      <div className="sm:space-y-4 flex flex-col mt-10 xl:mt-20 max-w-xl">
+        <h4 className="text-2xl sm:text-4xl font-semibold text-center pb-4">
           Lend me your ear..
         </h4>
 
-        <div className="sm:space-y-4 pt-8 xs:pt-0">
-          <div className="flex items-center space-x-5 justify-center">
-            <PhoneIcon className="h-4 w-4 sm:h-8 sm:w-8" />
-            <p className="text-lg sm:text-2xl">+44 7472 097 891</p>
+        <p className="text-left pb-4 text-[22px]">
+          You can contact me directly using the details displayed or by filling
+          in the form below. If you wish to use the form, make sure to complete
+          the reCAPTCHA by confirming you are not a robot!
+        </p>
+
+        <div className="sm:space-y-6 py-4 xs:pt-0">
+          <div className="flex items-center space-x-5 justify-start">
+            <PhoneIcon className="h-8 w-8" />
+            <p className="text-xl">+44 7472 097 891</p>
           </div>
-          <div className="flex items-center space-x-4 justify-center">
-            <EnvelopeIcon className="h-4 w-4 sm:h-8 sm:w-8" />
-            <p className="text-lg sm:text-2xl">prgf2011 [at] gmail.com</p>
+          <div className="flex items-center space-x-4 justify-start">
+            <EnvelopeIcon className="h-8 w-8" />
+            <p className="text-xl">prgf2011 [at] gmail.com</p>
           </div>
-          <div className="flex items-center space-x-5 justify-center">
-            <MapPinIcon className="h-4 w-4 sm:h-8 sm:w-8" />
-            <p className="text-lg sm:text-2xl">Kent - UK</p>
+          <div className="flex items-center space-x-5 justify-start">
+            <MapPinIcon className="h-8 w-8" />
+            <p className="text-xl">Kent - UK</p>
           </div>
         </div>
         <form
           onSubmit={submitHandler}
           className="flex flex-col space-y-0.5 sm:space-y-2 mt-4"
         >
-          <p className="text-center text-sm sm:text-xl pb-4">
-            You can also contact me by filling in the form
-          </p>
           <div className="flex space-x-0.5 sm:space-x-2">
             <input
               placeholder="Name"
@@ -135,8 +142,8 @@ export default function Contact() {
             <p className="btn2-dis text-center">Message sent</p>
           ) : (
             <button
-              className={!captcha ? `btn2-dis` : `btn2`}
-              disabled={!captcha || sentEmail ? true : false}
+              className={`${!captcha ? `btn2-dis ` : `btn2`}`}
+              disabled={!captcha}
             >
               {loading ? <LoadingSpinner /> : 'Submit'}
             </button>
@@ -152,7 +159,7 @@ export default function Contact() {
                 else alert('Recaptcha failed, please try again');
               });
             }}
-            className="flex justify-center items-center sm:mt-0"
+            className="flex justify-center items-center pt-4"
           />
         </form>
       </div>
